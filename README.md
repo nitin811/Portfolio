@@ -6,10 +6,10 @@ This is my personal portfolio website, built to showcase my projects, skills, re
 
 - HTML5
 
-- CSS3 / Tailwind / Bootstrap (mention what you used)
+- CSS3 
 
 - JavaScript
 
-- React.js / Vue / Angular (if used)
-
 - Git & GitHub
+
+- Figma
