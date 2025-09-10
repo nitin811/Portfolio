@@ -37,7 +37,7 @@
       }
     }
 
-    <style>@keyframes slow-pulse {
+    @keyframes slow-pulse {
 
       0%,
       100% {
@@ -51,6 +51,12 @@
 
     .animate-slow-pulse {
       animation: slow-pulse 1.5s infinite;
+    }
+
+    /* Ensure the mobile menu is on top of other content */
+    #nav-menu {
+      z-index: 40;
+      /* Tailwind z-index for 'z-40' */
     }
   </style>
 
