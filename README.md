@@ -4,7 +4,7 @@ Welcome to my personal portfolio website! This space is crafted to showcase my p
 
 ---
 
-## 🚀 Technologies Used
+##  Technologies Used
 
 - **HTML5**
 - **CSS3**
@@ -14,14 +14,13 @@ Welcome to my personal portfolio website! This space is crafted to showcase my p
 
 ---
 
-## 📸 Demo
+##  Demo
 
 👉 [Click here to view the live demo](https://nitintiwari.netlify.app)  
-*(Replace with your actual deployed URL)*
 
 ---
 
-## 📂 Features
+##  Features
 
 - Responsive design for all devices  
 - Interactive UI with hover effects     
@@ -29,7 +28,7 @@ Welcome to my personal portfolio website! This space is crafted to showcase my p
 
 ---
 
-## 🛠️ How to Run Locally
+##  How to Run Locally
 
 ```bash
 git clone https://github.com/nitin811/Portfolio.git
