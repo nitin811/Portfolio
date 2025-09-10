@@ -447,24 +447,24 @@
         contactForm.reset(); // Reset form fields
       });
 
+      // Removed the retry logic with await to fix script issues
 
+      // Mobile menu toggle logic
+      const menuToggle = document.getElementById('menu-toggle');
+      const navMenu = document.getElementById('nav-menu');
+      const navLinks = navMenu.querySelectorAll('a');
 
-      // Retry logic with exponential backoff
-      
-    // Mobile menu toggle logic
-    const menuToggle = document.getElementById('menu-toggle');
-    const navMenu = document.getElementById('nav-menu');
-    const navLinks = navMenu.querySelectorAll('a');
+      menuToggle.addEventListener('click', () => {
+        navMenu.classList.toggle('hidden');
+      });
 
-    menuToggle.addEventListener('click', () => {
-      navMenu.classList.toggle('hidden');
-    });
-
-    navLinks.forEach(link => {
-      link.addEventListener('click', () => {
-        if (!navMenu.classList.contains('hidden')) {
-          navMenu.classList.add('hidden');
-        }
+      navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+          if (!navMenu.classList.contains('hidden')) {
+            navMenu.classList.add('hidden');
+            navMenu.classList.remove('flex');
+          }
+        });
       });
     });
   </script>
