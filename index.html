@@ -1,86 +1,509 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Nitin Tiwari | Portfolio</title>
-  <link rel="stylesheet" href="style.css">
+  <title>Your Name - Portfolio</title>
+  <!-- Use Tailwind CSS for a modern, mobile-first design -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+
+    /* Custom scroll-snap for a satisfying user experience on scroll */
+    html {
+      scroll-behavior: smooth;
+    }
+
+    .section-snap {
+      scroll-snap-align: start;
+    }
+
+    /* Fade-in and slide-up animation */
+    .fade-in {
+      animation: fadeIn 1s ease-out forwards;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    <style>@keyframes slow-pulse {
+
+      0%,
+      100% {
+        transform: scale(1);
+      }
+
+      50% {
+        transform: scale(1.2);
+      }
+    }
+
+    .animate-slow-pulse {
+      animation: slow-pulse 1.5s infinite;
+    }
+  </style>
+
+  </style>
 </head>
 
-<body>
-  <header>
-    <h1>NITIN TIWARI</h1>
-    <p>Web Developer | Software Developer</p>
-    <nav>
-      <a href="#about">About</a>
-      <a href="#projects">Projects</a>
-      <a href="#contact">Contact</a>
+<body
+  class="min-h-screen flex flex-col bg-gray-100 text-gray-800 transition-colors duration-500 dark:bg-gray-900 dark:text-gray-200">
+
+  <!-- Header & Navigation -->
+  <header class="sticky top-0 z-50 shadow-md bg-white transition-colors duration-500 dark:bg-gray-800">
+    <nav class="container mx-auto px-4 py-4 flex items-center justify-between">
+      <a href="#" class="text-2xl font-bold text-indigo-600 rounded-md">
+        Nitin Tiwari
+      </a>
+      <div class="flex items-center space-x-4 sm:space-x-6">
+        <a href="#about"
+          class="text-gray-600 hover:text-indigo-600 transition-colors duration-300 rounded-md dark:text-gray-300 dark:hover:text-indigo-400">About</a>
+        <a href="#skills"
+          class="text-gray-600 hover:text-indigo-600 transition-colors duration-300 rounded-md dark:text-gray-300 dark:hover:text-indigo-400">Skills</a>
+        <a href="#coding-profiles"
+          class="text-gray-600 hover:text-indigo-600 transition-colors duration-300 rounded-md dark:text-gray-300 dark:hover:text-indigo-400">Profiles</a>
+        <a href="#projects"
+          class="text-gray-600 hover:text-indigo-600 transition-colors duration-300 rounded-md dark:text-gray-300 dark:hover:text-indigo-400">Projects</a>
+        <a href="#contact"
+          class="text-gray-600 hover:text-indigo-600 transition-colors duration-300 rounded-md dark:text-gray-300 dark:hover:text-indigo-400">Contact</a>
+      </div>
     </nav>
   </header>
 
-  <section id="about">
-    <h2>About Me</h2>
-    <p>Hi, I'm <b><i>Nitin Tiwari</i></b> – a passionate and dedicated Computer Science Engineering student from <b>Galgotias College
-        of
-        Engineering and Technology</b>, currently entering my 3rd year. I specialize in building clean, user-centric
-      applications and love exploring the intersection of technology, creativity, and problem-solving.
+  <main class="flex-grow">
+    <!-- Hero Section -->
+    <section id="hero"
+      class="container mx-auto px-4 py-20 md:py-32 flex flex-col lg:flex-row items-center justify-center text-center lg:text-left min-h-screen section-snap bg-gray-100 rounded-b-3xl transition-colors duration-500 dark:bg-gray-900">
+      <div class="lg:w-1/2 mb-10 lg:mb-0 fade-in">
+        <h1 class="text-4xl md:text-6xl font-extrabold leading-tight text-gray-900 mb-4 dark:text-white">
+          Hello, I'm <span class="text-indigo-600">Nitin Tiwari</span>
+        </h1>
+        <p class="text-lg md:text-xl text-gray-600 mb-8 dark:text-gray-400">
+          A passionate Full Stack Developer specializing in creating dynamic and user-friendly web applications. I also
+          possess a strong command of Data Structures and Algorithms (DSA) in C++, enabling me to build efficient and
+          scalable solutions from the ground up.
+        </p>
+        <a href="#projects"
+          class="inline-block bg-indigo-600 text-white font-semibold py-3 px-8 rounded-full shadow-lg hover:bg-indigo-700 transition-colors duration-300 transform hover:scale-105">
+          View My Work
+        </a>
+      </div>
+    </section>
 
-      I’ve worked on multiple hands-on projects that simulate
-      real-world applications, helping me build a strong foundation in software development, database management, and
-      modern frameworks. I strongly believe in writing clean code, continuous learning, and solving real-life problems
-      with scalable solutions.</p>
-  </section>
+    <!-- About Me Section -->
+    <section id="about" class="container mx-auto px-4 py-20 section-snap rounded-xl">
+      <div
+        class="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transform transition-all duration-300 hover:scale-[1.01] dark:bg-gray-800 dark:hover:bg-gray-700">
+        <div class="max-w-4xl mx-auto text-center fade-in" style="animation-delay: 0.2s;">
+          <h2
+            class="text-3xl md:text-4xl font-bold text-gray-800 mb-8 border-b-2 border-indigo-600 pb-2 inline-block dark:text-white">
+            About Me</h2>
+          <div class="flex flex-col md:flex-row items-center md:space-x-8">
+            <div class="w-full md:w-1/3 mb-6 md:mb-0">
+              <img src="image1.jpg" alt="Your Photo"
+                class="w-full h-auto object-cover rounded-3xl shadow-lg">
+            </div>
+            <div class="w-full md:w-2/3 text-left">
+              <p class="text-gray-600 mb-4 about-text dark:text-gray-400">
+                My journey in web development began with a curiosity for how websites work and a passion for building
+                things from scratch. Over the years, I've honed my skills in a variety of technologies, including HTML,
+                CSS, JavaScript, and modern frameworks like React. I thrive on solving complex problems and creating
+                elegant solutions that are both functional and beautiful.
+              </p>
+              <p class="text-gray-600 about-text dark:text-gray-400">
+                In addition to web development, I have a strong foundation in <b>Data Structures and Algorithms
+                  (DSA)</b> and <b>Object-Oriented Programming (OOP)</b>, with hands-on experience solving problems on
+                various coding platforms using <b>C++</b>. This expertise allows me to write efficient, scalable, and
+                clean code.
+              </p>
+              <!-- Gemini API Integration -->
+              <div class="mt-8">
+                <button id="generate-summary-btn"
+                  class="bg-indigo-500 text-white font-semibold py-2 px-6 rounded-full shadow-md hover:bg-indigo-600 transition-colors duration-300 transform hover:scale-105">
+                  Generate Professional Summary ✨
+                </button>
+                <div id="summary-output"
+                  class="mt-4 p-4 bg-gray-50 border border-gray-200 rounded-xl hidden dark:bg-gray-700 dark:border-gray-600">
+                  <p id="summary-text" class="text-gray-800 italic dark:text-white"></p>
+                  <div id="summary-loading" class="text-indigo-500 hidden mt-2">Loading...</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </section>
 
-  <section id="projects">
-    <h2>Projects</h2>
-    <div class="project-card">
-      <h3>Project Title</h3>
-      <p>Project description goes here.</p>
-      <a href="#" target="_blank">View Project</a>
+    <!-- Skills Section -->
+    <section id="skills" class="container mx-auto px-4 py-20 section-snap rounded-xl">
+      <div
+        class="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transform transition-all duration-300 hover:scale-[1.01] dark:bg-gray-800 dark:hover:bg-gray-700">
+        <div class="max-w-4xl mx-auto text-center fade-in">
+          <h2
+            class="text-3xl md:text-4xl font-bold text-gray-800 mb-8 border-b-2 border-indigo-600 pb-2 inline-block dark:text-white">
+            My Skills</h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 text-left">
+            <!-- Web Technologies -->
+            <div
+              class="group skills-card bg-gradient-to-br from-indigo-100 to-purple-100 dark:from-indigo-800 dark:to-purple-900 rounded-xl p-6 shadow-md transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:border-4 hover:border-indigo-400 relative overflow-hidden">
+              <div
+                class="absolute inset-0 opacity-0 group-hover:opacity-40 transition duration-300 bg-gradient-to-tr from-indigo-500 to-purple-500 rounded-xl pointer-events-none">
+              </div>
+              <h3 class="text-xl font-bold text-indigo-700 mb-4 dark:text-white transition group-hover:text-indigo-500">
+                Web Technologies</h3>
+              <ul
+                class="space-y-2 text-gray-600 dark:text-gray-400 font-semibold group-hover:text-gray-900 dark:group-hover:text-gray-100">
+                <li class="transition-all duration-300 group-hover:pl-3">HTML</li>
+                <li class="transition-all duration-300 group-hover:pl-3">CSS</li>
+                <li class="transition-all duration-300 group-hover:pl-3">JavaScript</li>
+              </ul>
+            </div>
+            <!-- Programming Languages -->
+            <div
+              class="group skills-card bg-gradient-to-br from-teal-100 to-cyan-100 dark:from-teal-900 dark:to-cyan-900 rounded-xl p-6 shadow-md transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:border-4 hover:border-teal-400 relative overflow-hidden">
+              <div
+                class="absolute inset-0 opacity-0 group-hover:opacity-40 transition duration-300 bg-gradient-to-tr from-teal-500 to-cyan-500 rounded-xl pointer-events-none">
+              </div>
+              <h3 class="text-xl font-bold text-teal-700 mb-4 dark:text-white transition group-hover:text-teal-500">
+                Programming Languages</h3>
+              <ul
+                class="space-y-2 text-gray-600 dark:text-gray-400 font-semibold group-hover:text-gray-900 dark:group-hover:text-gray-100">
+                <li class="transition-all duration-300 group-hover:pl-3">C++</li>
+                <li class="transition-all duration-300 group-hover:pl-3">Python</li>
+                <li class="transition-all duration-300 group-hover:pl-3">C</li>
+              </ul>
+            </div>
+            <!-- Libraries / Frameworks -->
+            <div
+              class="group skills-card bg-gradient-to-br from-rose-100 to-fuchsia-100 dark:from-rose-900 dark:to-fuchsia-900 rounded-xl p-6 shadow-md transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:border-4 hover:border-fuchsia-400 relative overflow-hidden">
+              <div
+                class="absolute inset-0 opacity-0 group-hover:opacity-40 transition duration-300 bg-gradient-to-tr from-rose-500 to-fuchsia-500 rounded-xl pointer-events-none">
+              </div>
+              <h3
+                class="text-xl font-bold text-fuchsia-700 mb-4 dark:text-white transition group-hover:text-fuchsia-500">
+                Libraries / Frameworks</h3>
+              <ul
+                class="space-y-2 text-gray-600 dark:text-gray-400 font-semibold group-hover:text-gray-900 dark:group-hover:text-gray-100">
+                <li class="transition-all duration-300 group-hover:pl-3">NumPy</li>
+                <li class="transition-all duration-300 group-hover:pl-3">Pandas</li>
+                <li class="transition-all duration-300 group-hover:pl-3">Matplotlib</li>
+                <li class="transition-all duration-300 group-hover:pl-3">React</li>
+              </ul>
+            </div>
+            <!-- Tools / Platform -->
+            <div
+              class="group skills-card bg-gradient-to-br from-yellow-100 to-orange-100 dark:from-yellow-900 dark:to-orange-900 rounded-xl p-6 shadow-md transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:border-4 hover:border-orange-400 relative overflow-hidden">
+              <div
+                class="absolute inset-0 opacity-0 group-hover:opacity-40 transition duration-300 bg-gradient-to-tr from-yellow-500 to-orange-500 rounded-xl pointer-events-none">
+              </div>
+              <h3 class="text-xl font-bold text-orange-700 mb-4 dark:text-white transition group-hover:text-orange-500">
+                Tools / Platform</h3>
+              <ul
+                class="space-y-2 text-gray-600 dark:text-gray-400 font-semibold group-hover:text-gray-900 dark:group-hover:text-gray-100">
+                <li class="transition-all duration-300 group-hover:pl-3">VS Code</li>
+                <li class="transition-all duration-300 group-hover:pl-3">GitHub</li>
+                <li class="transition-all duration-300 group-hover:pl-3">Figma</li>
+                <li class="transition-all duration-300 group-hover:pl-3">Git</li>
+                <li class="transition-all duration-300 group-hover:pl-3">Excel</li>
+              </ul>
+            </div>
+            <!-- Databases -->
+            <div
+              class="group skills-card bg-gradient-to-br from-green-100 to-lime-100 dark:from-green-900 dark:to-lime-900 rounded-xl p-6 shadow-md transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:border-4 hover:border-lime-400 relative overflow-hidden">
+              <div
+                class="absolute inset-0 opacity-0 group-hover:opacity-40 transition duration-300 bg-gradient-to-tr from-green-500 to-lime-500 rounded-xl pointer-events-none">
+              </div>
+              <h3 class="text-xl font-bold text-lime-700 mb-4 dark:text-white transition group-hover:text-lime-600">
+                Databases</h3>
+              <ul
+                class="space-y-2 text-gray-600 dark:text-gray-400 font-semibold group-hover:text-gray-900 dark:group-hover:text-gray-100">
+                <li class="transition-all duration-300 group-hover:pl-3">SQL</li>
+                <li class="transition-all duration-300 group-hover:pl-3">MongoDB</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Coding Profiles Section -->
+    <section id="coding-profiles" class="container mx-auto px-4 py-20 section-snap rounded-xl">
+      <div class="max-w-4xl mx-auto text-center fade-in">
+        <h2
+          class="text-3xl md:text-4xl font-bold text-gray-800 mb-8 border-b-2 border-indigo-600 pb-2 inline-block dark:text-white">
+          Coding Profiles</h2>
+        <p class="text-gray-600 mb-8 dark:text-gray-400">
+          You can find my solutions and competitive programming journey on the following platforms.
+        </p>
+        <div class="flex flex-wrap justify-center items-center gap-8">
+          <!-- GFG Profile -->
+          <a href="https://www.geeksforgeeks.org/user/nitink6oog" target="_blank"
+            class="flex flex-col items-center justify-center p-4 rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 bg-white dark:bg-gray-800">
+            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v5/icons/geeksforgeeks.svg" alt="GeeksforGeeks"
+              class="h-12 w-auto mb-2 dark:invert">
+            <span class="text-gray-600 font-semibold dark:text-gray-300">GeeksforGeeks</span>
+          </a>
+          <!-- LeetCode Profile -->
+          <a href="https://leetcode.com/u/nitin_1709" target="_blank"
+            class="flex flex-col items-center justify-center p-4 rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 bg-white dark:bg-gray-800">
+            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v5/icons/leetcode.svg" alt="LeetCode"
+              class="h-12 w-auto mb-2 dark:invert">
+            <span class="text-gray-600 font-semibold dark:text-gray-300">LeetCode</span>
+          </a>
+          <!-- HackerRank Profile -->
+          <a href="https://www.hackerrank.com/profile/nitinks3366" target="_blank"
+            class="flex flex-col items-center justify-center p-4 rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 bg-white dark:bg-gray-800">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/4/40/HackerRank_Icon-1000px.png" alt="HackerRank"
+              class="h-12 w-auto mb-2 dark:invert">
+            <span class="text-gray-600 font-semibold dark:text-gray-300">HackerRank</span>
+          </a>
+          <!-- CodeChef Profile -->
+          <a href="https://www.codechef.com/users/nitin1709" target="_blank"
+            class="flex flex-col items-center justify-center p-4 rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 bg-white dark:bg-gray-800">
+            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v5/icons/codechef.svg" alt="CodeChef"
+              class="h-12 w-auto mb-2 dark:invert">
+            <span class="text-gray-600 font-semibold dark:text-gray-300">CodeChef</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects"
+      class="bg-gray-100 py-20 section-snap rounded-t-3xl transition-colors duration-500 dark:bg-gray-900">
+      <div class="container mx-auto px-4 fade-in" style="animation-delay: 0.4s;">
+        <div class="max-w-4xl mx-auto text-center mb-12">
+          <h2
+            class="text-3xl md:text-4xl font-bold text-gray-800 mb-8 border-b-2 border-indigo-600 pb-2 inline-block dark:text-white">
+            My Projects</h2>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          <!-- Project Card 1 -->
+          <div
+            class="bg-white p-6 rounded-3xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 dark:bg-gray-800">
+            <h3 class="text-xl font-bold text-gray-800 mb-2 dark:text-white">Project Name 1</h3>
+            <p class="text-gray-600 mb-4 dark:text-gray-400">
+              A brief description of your project. Mention the technologies used and what problem it solves.
+            </p>
+            <a href="#"
+              class="text-indigo-600 font-semibold hover:text-indigo-800 transition-colors duration-300 rounded-md dark:text-indigo-400 dark:hover:text-indigo-300">View
+              Details →</a>
+          </div>
+          <!-- Project Card 2 -->
+          <div
+            class="bg-white p-6 rounded-3xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 dark:bg-gray-800">
+            <h3 class="text-xl font-bold text-gray-800 mb-2 dark:text-white">Project Name 2</h3>
+            <p class="text-gray-600 mb-4 dark:text-gray-400">
+              A brief description of your project. Mention the technologies used and what problem it solves.
+            </p>
+            <a href="#"
+              class="text-indigo-600 font-semibold hover:text-indigo-800 transition-colors duration-300 rounded-md dark:text-indigo-400 dark:hover:text-indigo-300">View
+              Details →</a>
+          </div>
+          <!-- Project Card 3 -->
+          <div
+            class="bg-white p-6 rounded-3xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 dark:bg-gray-800">
+            <h3 class="text-xl font-bold text-gray-800 mb-2 dark:text-white">Project Name 3</h3>
+            <p class="text-gray-600 mb-4 dark:text-gray-400">
+              A brief description of your project. Mention the technologies used and what problem it solves.
+            </p>
+            <a href="#"
+              class="text-indigo-600 font-semibold hover:text-indigo-800 transition-colors duration-300 rounded-md dark:text-indigo-400 dark:hover:text-indigo-300">View
+              Details →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="container mx-auto px-4 py-20 section-snap">
+      <div class="max-w-2xl mx-auto text-center fade-in" style="animation-delay: 0.6s;">
+        <h2
+          class="text-3xl md:text-4xl font-bold text-gray-800 mb-8 border-b-2 border-indigo-600 pb-2 inline-block dark:text-white">
+          Get in Touch</h2>
+        <p class="text-gray-600 mb-8 dark:text-gray-400">
+          I'm currently open to new opportunities. Feel free to reach out and say hello!
+        </p>
+        <form id="contact-form" class="bg-white p-8 rounded-3xl shadow-lg dark:bg-gray-800">
+          <div class="mb-4 text-left">
+            <label for="name" class="block font-bold mb-2 text-gray-700 dark:text-gray-300">Name</label>
+            <input type="text" id="name" name="name"
+              class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-white text-gray-800 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+              required>
+          </div>
+          <div class="mb-4 text-left">
+            <label for="email" class="block font-bold mb-2 text-gray-700 dark:text-gray-300">Email</label>
+            <input type="email" id="email" name="email"
+              class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-white text-gray-800 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+              required>
+          </div>
+          <div class="mb-6 text-left">
+            <label for="message" class="block font-bold mb-2 text-gray-700 dark:text-gray-300">Message</label>
+            <textarea id="message" name="message" rows="4"
+              class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-white text-gray-800 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+              required></textarea>
+          </div>
+          <button type="submit"
+            class="w-full bg-indigo-600 text-white font-semibold py-3 px-8 rounded-full shadow-lg hover:bg-indigo-700 transition-colors duration-300 transform hover:scale-105">
+            Send Message
+          </button>
+          <div id="form-status" class="mt-4 text-sm font-semibold"></div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-gray-800 text-white py-8 mt-auto rounded-t-3xl dark:bg-gray-900">
+    <div class="container mx-auto px-4 text-center">
+      <p class="text-gray-400 mb-4 dark:text-gray-500">&copy; 2025 Your Name. All rights reserved.</p>
+      <p class="text-gray-400 text-sm dark:text-gray-500">
+        Made with <span class="inline-block animate-pulse text-red-500">❤️</span> by <strong>Nitin</strong>
+      </p>
+      <br>
+      <div class="flex justify-center space-x-6">
+        <!-- Social media icons with links -->
+        <a href="https://github.com/nitin811" target="_blank"
+          class="text-gray-400 hover:text-white transition-colors duration-300">
+          <svg class="w-6 h-6 dark:invert" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+            <path fill-rule="evenodd"
+              d="M12 2C6.477 2 2 6.484 2 12.017c0 4.417 2.865 8.164 6.83 9.488.5.092.682-.217.682-.483 0-.237-.008-.867-.013-1.7-2.782.604-3.37-.9-3.37-.9-.454-1.156-1.11-1.465-1.11-1.465-.908-.62.068-.607.068-.607 1.002.07 1.531 1.032 1.531 1.032.892 1.528 2.341 1.087 2.903.832.09-.646.353-1.087.643-1.334-2.22-.253-4.555-1.115-4.555-4.954 0-1.091.39-1.984 1.029-2.682-.103-.253-.446-1.27.098-2.65c0 0 .84-.268 2.75 1.022A9.013 9.013 0 0112 5.07c.85.003 1.705.115 2.504.337 1.909-1.29 2.747-1.022 2.747-1.022.546 1.38.202 2.398.099 2.65.64.698 1.028 1.591 1.028 2.682 0 3.84-2.336 4.7-4.566 4.943.359.309.678.92.678 1.855 0 1.334-.012 2.41-.012 2.742 0 .268.18.578.688.485C21.137 20.198 24 16.452 24 12.017 24 6.484 19.522 2 14 2c-.933 0-1.85.127-2.738.375C9.378 2.592 10.147 2 11 2h1z"
+              clip-rule="evenodd"></path>
+          </svg>
+        </a>
+        <a href="https://www.linkedin.com/in/nitin-tiwari-272508281" target="_blank"
+          class="text-gray-400 hover:text-white transition-colors duration-300">
+          <svg class="w-6 h-6 dark:invert" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+            <path
+              d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.763s.784-1.763 1.75-1.763 1.75.79 1.75 1.763-.783 1.763-1.75 1.763zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.723 7 2.355v6.88z">
+            </path>
+          </svg>
+        </a>
+        <a href="mailto:nitinks3366@gmail.com" class="text-gray-400 hover:text-white transition-colors duration-300">
+          <svg class="w-6 h-6 dark:invert" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+            <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path>
+            <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path>
+          </svg>
+        </a>
+        <a href="https://www.instagram.com/nitin_tiwari_999" target="_blank"
+          class="text-gray-400 hover:text-white transition-colors duration-300">
+          <svg class="w-6 h-6 dark:invert" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+            <path
+              d="M12 2c2.715 0 3.056.01 4.123.064 1.069.054 1.792.203 2.428.467.636.265 1.206.697 1.74 1.23.535.533.967 1.104 1.232 1.74.264.636.413 1.36.467 2.428.054 1.066.064 1.407.064 4.122 0 2.716-.01 3.056-.064 4.123-.054 1.069-.203 1.792-.467 2.428-.265.636-.697 1.206-1.74 1.23-.533.535-1.104.967-1.74 1.232-.636.264-1.36.413-2.428.467-1.066.054-1.407.064-4.122.064s-3.056-.01-4.123-.064c-1.069-.054-1.792-.203-2.428-.467-.636-.265-1.206-.697-1.74-1.23-.535-.533-.967-1.104-1.232-1.74-.264-.636-.413-1.36-.467-2.428-.054-1.066-.064-1.407-.064-4.122s.01-3.056.064-4.123c.054-1.069.203-1.792.467-2.428.265-.636.697-1.206 1.23-1.74.533-.535 1.104-.967 1.74-1.232.636-.264 1.36-.413 2.428-.467C8.944 2.01 9.285 2 12 2zm0 1.637c-2.613 0-2.919.01-3.951.063-1.032.052-1.57.19-1.996.368-.426.178-.717.433-1.01.725-.292.292-.547.584-.725 1.01-.178.426-.316.964-.368 1.996-.053 1.032-.063 1.339-.063 3.951s.01 2.919.063 3.951c.052 1.032.19 1.57.368 1.996.178.426.433.717.725 1.01.292.292.584.547 1.01.725.426.178.964.316 1.996.368 1.032.053 1.339.063 3.951.063s2.919-.01 3.951-.063c1.032-.052 1.57-.19 1.996-.368.426-.178.717-.433 1.01-.725.292-.292.547-.584.725-1.01.178-.426.316-.964.368-1.996.053-1.032.063-1.339.063-3.951s-.01-2.919-.063-3.951c-.052-1.032-.19-1.57-.368-1.996-.178-.426-.433-.717-.725-1.01-.292-.292-.584-.547-1.01-.725-.426-.178-.964-.316-1.996-.368C14.919 3.647 14.613 3.637 12 3.637zm0 1.933c2.433 0 2.68.009 3.626.056.94.047 1.442.18 1.764.316.322.136.561.348.745.533.184.184.397.423.533.745.136.322.269.824.316 1.764.047.946.056 1.193.056 3.626s-.009 2.68-.056 3.626c-.047.94-.18 1.442-.316 1.764-.136.322-.348.561-.533.745-.184.184-.423.397-.745.533-.322.136-.824.269-1.764.316-.946.047-1.193.056-3.626.056s-2.68-.009-3.626-.056c-.94-.047-1.442-.18-1.764-.316-.322-.136-.561-.348-.745-.533-.184-.184-.397-.423-.533-.745-.136-.322-.269-.824-.316-1.764-.047-.946-.056-1.193-.056-3.626s.009-2.68.056-3.626c.047-.94.18-1.442.316-1.764.136-.322.348-.561.533-.745.184-.184.423-.397.745-.533.322-.136.824-.269 1.764-.316.946-.047 1.193-.056 3.626-.056zm5.223 2.503c-.636 0-1.15.513-1.15 1.15s.514 1.15 1.15 1.15 1.15-.513 1.15-1.15-.514-1.15-1.15-1.15zm-5.223 1.933c-2.312 0-4.195 1.884-4.195 4.196 0 2.311 1.883 4.195 4.195 4.195s4.195-1.884 4.195-4.195c0-2.312-1.883-4.196-4.195-4.196z">
+            </path>
+          </svg>
+        </a>
+      </div>
     </div>
-    <!-- Repeat for more projects -->
-  </section>
-
-  <section id="Skills">
-    <h2>Skills</h2>
-    <div class="skill-card">
-      <h3><u> Development</u></h3>
-      <ul>
-        <li>HTML5, CSS3, JavaScript</li>
-      </ul>
-      <h3><u>Programming Languages</u></h3>
-      <ul>
-        <li>Python, C++, C, Java (Basics + OOPs)</li>
-      </ul>
-      <h3><u>Libraries/Framework</u></h3>
-      <ul>
-        <li>NumPy, Pandas, Matplotlib, React.js</li>
-      </ul>
-      <h3><u>Fundamentals</u></h3>
-      <ul>
-        <li>Data Structures & Algorithms (DSA)</li>
-        <li>Object-Oriented Programming (OOP)</li>
-        <li>Database Management Systems (DBMS)</li>
-        <li>Operating Systems (OS)</li>
-      </ul>
-      <h3><u>Database & Tools</u></h3>
-      <ul>
-        <li>MySQL</li>
-        <li>Git & GitHub</li>
-        <li>VS Code</li>
-        <li>Figma</li>
-      </ul>
-    </div>
-    <!-- Repeat for more projects -->
-  </section>
-
-
-  <footer>
-    <p>&copy; 2025 Nitin Tiwari</p>
-
   </footer>
-  <script src="script.js"></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Smooth scroll for navigation links
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+          e.preventDefault();
+          document.querySelector(this.getAttribute('href')).scrollIntoView({
+            behavior: 'smooth'
+          });
+        });
+      });
+
+      // Handle form submission
+      const contactForm = document.getElementById('contact-form');
+      const formStatus = document.getElementById('form-status');
+
+      contactForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+        formStatus.className = 'mt-4 text-sm font-semibold text-green-600';
+        formStatus.textContent = 'Message sent successfully!';
+        contactForm.reset(); // Reset form fields
+      });
+
+      // Gemini API Integration
+      const generateSummaryBtn = document.getElementById('generate-summary-btn');
+      const summaryOutput = document.getElementById('summary-output');
+      const summaryText = document.getElementById('summary-text');
+      const summaryLoading = document.getElementById('summary-loading');
+
+      const apiKey = "";
+      const apiUrl = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=" + apiKey;
+
+      generateSummaryBtn.addEventListener('click', async () => {
+        const aboutText = Array.from(document.querySelectorAll('.about-text')).map(p => p.textContent.trim()).join(' ');
+
+        summaryOutput.classList.remove('hidden');
+        summaryText.textContent = '';
+        summaryLoading.classList.remove('hidden');
+        generateSummaryBtn.disabled = true;
+
+        const payload = {
+          contents: [{
+            parts: [
+              { text: `Based on the following personal description, act as a professional career coach and generate a concise, one-paragraph professional summary for a resume or LinkedIn profile. Do not include any introductory or concluding phrases. The description is: "${aboutText}"` }
+            ]
+          }],
+          systemInstruction: {
+            parts: [{
+              text: "You are a world-class career coach, specializing in crafting professional summaries. Your response should be a single, well-written paragraph."
+            }]
+          }
+        };
+
+        // Retry logic with exponential backoff
+        const maxRetries = 3;
+        let retryCount = 0;
+        let success = false;
+
+        while (retryCount < maxRetries && !success) {
+          try {
+            const response = await fetch(apiUrl, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(payload)
+            });
+
+            if (!response.ok) {
+              throw new Error(`HTTP error! status: ${response.status}`);
+            }
+
+            const result = await response.json();
+            const generatedContent = result?.candidates?.[0]?.content?.parts?.[0]?.text;
+
+            if (generatedContent) {
+              summaryText.textContent = generatedContent.trim();
+              success = true;
+            } else {
+              summaryText.textContent = "Could not generate summary. Please try again.";
+            }
+          } catch (error) {
+            console.error("Fetch error:", error);
+            if (retryCount < maxRetries - 1) {
+              const delay = Math.pow(2, retryCount) * 1000;
+              await new Promise(res => setTimeout(res, delay));
+            } else {
+              summaryText.textContent = "Failed to generate summary after multiple retries. Please try again later.";
+            }
+            retryCount++;
+          }
+        }
+
+        summaryLoading.classList.add('hidden');
+        generateSummaryBtn.disabled = false;
+      });
+
+    });
+  </script>
 </body>
 
 </html>
