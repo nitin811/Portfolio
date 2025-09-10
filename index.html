@@ -150,18 +150,6 @@
                 various coding platforms using <b>C++</b>. This expertise allows me to write efficient, scalable, and
                 clean code.
               </p>
-              <!-- Gemini API Integration -->
-              <div class="mt-8">
-                <button id="generate-summary-btn"
-                  class="bg-indigo-500 text-white font-semibold py-2 px-6 rounded-full shadow-md hover:bg-indigo-600 transition-colors duration-300 transform hover:scale-105">
-                  Generate Professional Summary ✨
-                </button>
-                <div id="summary-output"
-                  class="mt-4 p-4 bg-gray-50 border border-gray-200 rounded-xl hidden dark:bg-gray-700 dark:border-gray-600">
-                  <p id="summary-text" class="text-gray-800 italic dark:text-white"></p>
-                  <div id="summary-loading" class="text-indigo-500 hidden mt-2">Loading...</div>
-                </div>
-              </div>
             </div>
           </div>
         </div>
@@ -523,6 +511,25 @@
 
         summaryLoading.classList.add('hidden');
         generateSummaryBtn.disabled = false;
+      });
+
+      // Mobile menu toggle logic
+      const menuToggle = document.getElementById('menu-toggle');
+      const navMenu = document.getElementById('nav-menu');
+      const navLinks = navMenu.querySelectorAll('a');
+
+      menuToggle.addEventListener('click', () => {
+        navMenu.classList.toggle('hidden');
+        navMenu.classList.toggle('flex');
+      });
+
+      navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+          if (window.innerWidth < 768) { // Assuming md breakpoint is 768px
+            navMenu.classList.add('hidden');
+            navMenu.classList.remove('flex');
+          }
+        });
       });
 
     });
