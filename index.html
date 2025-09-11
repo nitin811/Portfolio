@@ -59,8 +59,9 @@
       /* Tailwind z-index for 'z-40' */
     }
   </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 
-  </style>
+
 </head>
 
 <body
@@ -355,85 +356,78 @@
 
     <!-- Contact Section -->
     <section id="contact" class="container mx-auto px-4 py-20 section-snap">
-      <div class="max-w-2xl mx-auto text-center fade-in" style="animation-delay: 0.6s;">
-        <h2
-          class="text-3xl md:text-4xl font-bold text-gray-800 mb-8 border-b-2 border-indigo-600 pb-2 inline-block dark:text-white">
-          Get in Touch</h2>
-        <p class="text-gray-600 mb-8 dark:text-gray-400">
-          I'm currently open to new opportunities. Feel free to reach out and say hello!
-        </p>
-        <form id="contact-form" class="bg-white p-8 rounded-3xl shadow-lg dark:bg-gray-800">
-          <div class="mb-4 text-left">
-            <label for="name" class="block font-bold mb-2 text-gray-700 dark:text-gray-300">Name</label>
-            <input type="text" id="name" name="name"
-              class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-white text-gray-800 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
-              required>
+      <div class="max-w-3xl mx-auto fade-in">
+        <div class="text-center mb-10">
+          <h2
+            class="text-3xl md:text-4xl font-bold text-gray-800 mb-4 border-b-2 border-indigo-600 pb-2 inline-block dark:text-white">
+            Get in Touch</h2>
+          <p class="text-gray-600 dark:text-gray-400 text-lg">
+            I'm currently open to new opportunities. Feel free to reach out and say hello!
+          </p>
+        </div>
+        <form id="contact-form"
+          class="bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-6 md:p-10 space-y-6 transition-all duration-300">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <label for="name" class="block font-semibold mb-1 text-gray-700 dark:text-gray-300">Name</label>
+              <input type="text" id="name" name="name"
+                class="w-full px-4 py-2 border rounded-lg bg-white dark:bg-gray-700 border-gray-300 dark:border-gray-600 text-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                required>
+            </div>
+            <div>
+              <label for="email" class="block font-semibold mb-1 text-gray-700 dark:text-gray-300">Email</label>
+              <input type="email" id="email" name="email"
+                class="w-full px-4 py-2 border rounded-lg bg-white dark:bg-gray-700 border-gray-300 dark:border-gray-600 text-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                required>
+            </div>
           </div>
-          <div class="mb-4 text-left">
-            <label for="email" class="block font-bold mb-2 text-gray-700 dark:text-gray-300">Email</label>
-            <input type="email" id="email" name="email"
-              class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-white text-gray-800 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
-              required>
-          </div>
-          <div class="mb-6 text-left">
-            <label for="message" class="block font-bold mb-2 text-gray-700 dark:text-gray-300">Message</label>
-            <textarea id="message" name="message" rows="4"
-              class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-white text-gray-800 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+          <div>
+            <label for="message" class="block font-semibold mb-1 text-gray-700 dark:text-gray-300">Message</label>
+            <textarea id="message" name="message" rows="5"
+              class="w-full px-4 py-2 border rounded-lg bg-white dark:bg-gray-700 border-gray-300 dark:border-gray-600 text-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500"
               required></textarea>
           </div>
           <button type="submit"
-            class="w-full bg-indigo-600 text-white font-semibold py-3 px-8 rounded-full shadow-lg hover:bg-indigo-700 transition-colors duration-300 transform hover:scale-105">
+            class="w-full bg-indigo-600 text-white font-bold py-3 px-6 rounded-full hover:bg-indigo-700 transition duration-300 transform hover:scale-105">
             Send Message
           </button>
-          <div id="form-status" class="mt-4 text-sm font-semibold"></div>
+          <div id="form-status" class="mt-4 text-center text-sm font-semibold"></div>
         </form>
       </div>
     </section>
+
   </main>
 
+
   <!-- Footer -->
-  <footer class="bg-gray-800 text-white py-8 mt-auto rounded-t-3xl dark:bg-gray-900">
-    <div class="container mx-auto px-4 text-center">
-      <p class="text-gray-400 mb-4 dark:text-gray-500">&copy; 2025 Your Name. All rights reserved.</p>
-      <p class="text-gray-400 text-sm dark:text-gray-500">
+  <footer class="bg-gray-900 text-white py-10 mt-16 border-t-4 border-indigo-600 rounded-t-3xl shadow-inner">
+    <div class="container mx-auto px-4 text-center space-y-4">
+      <p class="text-gray-400">&copy; 2025 Nitin Tiwari. All rights reserved.</p>
+      <p class="text-sm text-gray-500">
         Made with <span class="inline-block animate-pulse text-red-500">❤️</span> by <strong>Nitin</strong>
       </p>
-      <br>
-      <div class="flex justify-center space-x-6">
-        <!-- Social media icons with links -->
-        <a href="https://github.com/nitin811" target="_blank"
-          class="text-gray-400 hover:text-white transition-colors duration-300">
-          <svg class="w-6 h-6 dark:invert" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-            <path fill-rule="evenodd"
-              d="M12 2C6.477 2 2 6.484 2 12.017c0 4.417 2.865 8.164 6.83 9.488.5.092.682-.217.682-.483 0-.237-.008-.867-.013-1.7-2.782.604-3.37-.9-3.37-.9-.454-1.156-1.11-1.465-1.11-1.465-.908-.62.068-.607.068-.607 1.002.07 1.531 1.032 1.531 1.032.892 1.528 2.341 1.087 2.903.832.09-.646.353-1.087.643-1.334-2.22-.253-4.555-1.115-4.555-4.954 0-1.091.39-1.984 1.029-2.682-.103-.253-.446-1.27.098-2.65c0 0 .84-.268 2.75 1.022A9.013 9.013 0 0112 5.07c.85.003 1.705.115 2.504.337 1.909-1.29 2.747-1.022 2.747-1.022.546 1.38.202 2.398.099 2.65.64.698 1.028 1.591 1.028 2.682 0 3.84-2.336 4.7-4.566 4.943.359.309.678.92.678 1.855 0 1.334-.012 2.41-.012 2.742 0 .268.18.578.688.485C21.137 20.198 24 16.452 24 12.017 24 6.484 19.522 2 14 2c-.933 0-1.85.127-2.738.375C9.378 2.592 10.147 2 11 2h1z"
-              clip-rule="evenodd"></path>
-          </svg>
+      <div class="flex justify-center gap-6">
+        <!-- GitHub -->
+        <a href="https://github.com/nitin811" target="_blank" class="hover:text-indigo-400 transition">
+          <i class="fab fa-github text-2xl"></i>
         </a>
+        <!-- LinkedIn -->
         <a href="https://www.linkedin.com/in/nitin-tiwari-272508281" target="_blank"
-          class="text-gray-400 hover:text-white transition-colors duration-300">
-          <svg class="w-6 h-6 dark:invert" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-            <path
-              d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.763s.784-1.763 1.75-1.763 1.75.79 1.75 1.763-.783 1.763-1.75 1.763zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.723 7 2.355v6.88z">
-            </path>
-          </svg>
+          class="hover:text-indigo-400 transition">
+          <i class="fab fa-linkedin text-2xl"></i>
         </a>
-        <a href="mailto:nitinks3366@gmail.com" class="text-gray-400 hover:text-white transition-colors duration-300">
-          <svg class="w-6 h-6 dark:invert" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-            <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path>
-            <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path>
-          </svg>
+        <!-- Mail -->
+        <a href="mailto:nitinks3366@gmail.com" class="hover:text-indigo-400 transition">
+          <i class="fas fa-envelope text-2xl"></i>
         </a>
-        <a href="https://www.instagram.com/nitin_tiwari_999" target="_blank"
-          class="text-gray-400 hover:text-white transition-colors duration-300">
-          <svg class="w-6 h-6 dark:invert" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-            <path
-              d="M12 2c2.715 0 3.056.01 4.123.064 1.069.054 1.792.203 2.428.467.636.265 1.206.697 1.74 1.23.535.533.967 1.104 1.232 1.74.264.636.413 1.36.467 2.428.054 1.066.064 1.407.064 4.122 0 2.716-.01 3.056-.064 4.123-.054 1.069-.203 1.792-.467 2.428-.265.636-.697 1.206-1.74 1.23-.533.535-1.104.967-1.74 1.232-.636.264-1.36.413-2.428.467-1.066.054-1.407.064-4.122.064s-3.056-.01-4.123-.064c-1.069-.054-1.792-.203-2.428-.467-.636-.265-1.206-.697-1.74-1.23-.535-.533-.967-1.104-1.232-1.74-.264-.636-.413-1.36-.467-2.428-.054-1.066-.064-1.407-.064-4.122s.01-3.056.064-4.123c.054-1.069.203-1.792.467-2.428.265-.636.697-1.206 1.23-1.74.533-.535 1.104-.967 1.74-1.232.636-.264 1.36-.413 2.428-.467C8.944 2.01 9.285 2 12 2zm0 1.637c-2.613 0-2.919.01-3.951.063-1.032.052-1.57.19-1.996.368-.426.178-.717.433-1.01.725-.292.292-.547.584-.725 1.01-.178.426-.316.964-.368 1.996-.053 1.032-.063 1.339-.063 3.951s.01 2.919.063 3.951c.052 1.032.19 1.57.368 1.996.178.426.433.717.725 1.01.292.292.584.547 1.01.725.426.178.964.316 1.996.368 1.032.053 1.339.063 3.951.063s2.919-.01 3.951-.063c1.032-.052 1.57-.19 1.996-.368.426-.178.717-.433 1.01-.725.292-.292.547-.584.725-1.01.178-.426.316-.964.368-1.996.053-1.032.063-1.339.063-3.951s-.01-2.919-.063-3.951c-.052-1.032-.19-1.57-.368-1.996-.178-.426-.433-.717-.725-1.01-.292-.292-.584-.547-1.01-.725-.426-.178-.964-.316-1.996-.368C14.919 3.647 14.613 3.637 12 3.637zm0 1.933c2.433 0 2.68.009 3.626.056.94.047 1.442.18 1.764.316.322.136.561.348.745.533.184.184.397.423.533.745.136.322.269.824.316 1.764.047.946.056 1.193.056 3.626s-.009 2.68-.056 3.626c-.047.94-.18 1.442-.316 1.764-.136.322-.348.561-.533.745-.184.184-.423.397-.745.533-.322.136-.824.269-1.764.316-.946.047-1.193.056-3.626.056s-2.68-.009-3.626-.056c-.94-.047-1.442-.18-1.764-.316-.322-.136-.561-.348-.745-.533-.184-.184-.397-.423-.533-.745-.136-.322-.269-.824-.316-1.764-.047-.946-.056-1.193-.056-3.626s.009-2.68.056-3.626c.047-.94.18-1.442.316-1.764.136-.322.348-.561.533-.745.184-.184.423-.397.745-.533.322-.136.824-.269 1.764-.316.946-.047 1.193-.056 3.626-.056zm5.223 2.503c-.636 0-1.15.513-1.15 1.15s.514 1.15 1.15 1.15 1.15-.513 1.15-1.15-.514-1.15-1.15-1.15zm-5.223 1.933c-2.312 0-4.195 1.884-4.195 4.196 0 2.311 1.883 4.195 4.195 4.195s4.195-1.884 4.195-4.195c0-2.312-1.883-4.196-4.195-4.196z">
-            </path>
-          </svg>
+        <!-- Instagram -->
+        <a href="https://www.instagram.com/nitin_tiwari_999" target="_blank" class="hover:text-indigo-400 transition">
+          <i class="fab fa-instagram text-2xl"></i>
         </a>
       </div>
     </div>
   </footer>
+
 
   <script>
     document.addEventListener('DOMContentLoaded', () => {
