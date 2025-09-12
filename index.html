@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en" class="scroll-smooth" data-theme="light">
+
 
 <head>
   <meta charset="UTF-8">
@@ -74,11 +75,20 @@
         Nitin Tiwari
       </a>
       <!-- Hamburger menu button for mobile -->
-      <button id="menu-toggle" class="md:hidden text-gray-600 dark:text-gray-300 focus:outline-none">
+      <!-- <button id="menu-toggle" class="md:hidden text-gray-600 dark:text-gray-300 focus:outline-none">
         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
         </svg>
+      </button> -->
+      <button id="menu-toggle" class="md:hidden text-gray-600 dark:text-gray-300 focus:outline-none text-2xl">
+        <i id="menu-icon" class="fas fa-bars"></i>
       </button>
+
+      <!-- Dark Mode Toggle Button -->
+      <!-- <button id="dark-mode-toggle" class="ml-4 text-2xl focus:outline-none text-yellow-500 dark:text-gray-300">
+        <i id="theme-icon" class="fas fa-moon"></i>
+      </button> -->
+
 
       <div id="nav-menu"
         class="hidden md:flex flex-col md:flex-row items-center md:space-x-6 space-y-4 md:space-y-0 w-full md:w-auto absolute md:static top-16 left-0 bg-white dark:bg-gray-800 shadow-lg md:shadow-none p-4 md:p-0">
@@ -453,16 +463,41 @@
         contactForm.reset(); // Reset form fields
       });
 
-      // Removed the retry logic with await to fix script issues
+      
 
       // Mobile menu toggle logic
       const menuToggle = document.getElementById('menu-toggle');
       const navMenu = document.getElementById('nav-menu');
       const navLinks = navMenu.querySelectorAll('a');
+      const menuIcon = document.getElementById('menu-icon');
 
       menuToggle.addEventListener('click', () => {
         navMenu.classList.toggle('hidden');
+
+        // Toggle icon
+        if (menuIcon.classList.contains('fa-bars')) {
+          menuIcon.classList.remove('fa-bars');
+          menuIcon.classList.add('fa-xmark');
+        } else {
+          menuIcon.classList.remove('fa-xmark');
+          menuIcon.classList.add('fa-bars');
+        }
       });
+
+      // Close menu on link click
+      navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+          if (!navMenu.classList.contains('hidden')) {
+            navMenu.classList.add('hidden');
+            navMenu.classList.remove('flex');
+
+            // Reset icon to hamburger
+            menuIcon.classList.remove('fa-xmark');
+            menuIcon.classList.add('fa-bars');
+          }
+        });
+      });
+
 
       navLinks.forEach(link => {
         link.addEventListener('click', () => {
