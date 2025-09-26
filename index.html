@@ -502,15 +502,13 @@
       const menuIcon = document.getElementById('menu-icon');
 
       menuToggle.addEventListener('click', () => {
-        const isHidden = navMenu.classList.contains('hidden');
-        if (isHidden) {
-          navMenu.classList.remove('hidden');
-          navMenu.classList.add('flex');
+        navMenu.classList.toggle('hidden');
+
+        // Toggle icon
+        if (menuIcon.classList.contains('fa-bars')) {
           menuIcon.classList.remove('fa-bars');
           menuIcon.classList.add('fa-xmark');
         } else {
-          navMenu.classList.add('hidden');
-          navMenu.classList.remove('flex');
           menuIcon.classList.remove('fa-xmark');
           menuIcon.classList.add('fa-bars');
         }
@@ -519,11 +517,23 @@
       // Close menu on link click
       navLinks.forEach(link => {
         link.addEventListener('click', () => {
-          if (window.innerWidth < 768) { // md breakpoint in Tailwind
+          if (!navMenu.classList.contains('hidden')) {
             navMenu.classList.add('hidden');
             navMenu.classList.remove('flex');
+
+            // Reset icon to hamburger
             menuIcon.classList.remove('fa-xmark');
             menuIcon.classList.add('fa-bars');
+          }
+        });
+      });
+
+
+      navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+          if (!navMenu.classList.contains('hidden')) {
+            navMenu.classList.add('hidden');
+            navMenu.classList.remove('flex');
           }
         });
       });
