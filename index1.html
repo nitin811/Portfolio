@@ -1,29 +1,188 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Card</title>
-    <link rel="stylesheet" href="style1.css">
+    <title>Profile Card</title>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+        body {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #f2f2f2;
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+        }
+
+        .profile-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            max-width: 370px;
+            width: 90%;
+            background: #fff;
+            border-radius: 24px;
+            padding: 25px;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        .profile-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 36%;
+            width: 100%;
+            border-radius: 24px 24px 0 0;
+            background-color: #6366f1;
+            /* Using indigo to match main site */
+        }
+
+        .image {
+            position: relative;
+            height: 150px;
+            width: 150px;
+            border-radius: 50%;
+            background-color: #6366f1;
+            padding: 3px;
+            margin-bottom: 10px;
+            z-index: 10;
+            overflow: hidden;
+            /* ✅ Prevent overflow */
+            box-sizing: border-box;
+            /* ✅ Ensure padding is included inside size */
+        }
+
+        .image .profile-image {
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 3px solid #fff;
+            display: block;
+            /* ✅ Prevent inline spacing issues */
+        }
+
+        .profile-card .text-data {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: #333;
+        }
+
+        .text-data .name {
+            font-size: 22px;
+            font-weight: 600;
+        }
+
+        .text-data .job {
+            font-size: 15px;
+            font-weight: 400;
+        }
+
+        .profile-card .contact-info {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            /* Align items to the start */
+            margin-top: 15px;
+            width: 100%;
+            padding: 0 20px;
+        }
+
+        .contact-info a {
+            display: flex;
+            align-items: center;
+            color: #333;
+            text-decoration: none;
+            font-size: 15px;
+            margin-bottom: 8px;
+            /* Space between items */
+            transition: color 0.3s ease;
+        }
+
+        .contact-info a:hover {
+            color: #6366f1;
+            /* Highlight on hover */
+        }
+
+        .contact-info i {
+            font-size: 20px;
+            margin-right: 10px;
+            color: #6366f1;
+        }
+
+        .profile-card .media-buttons {
+            display: flex;
+            align-items: center;
+            margin-top: 15px;
+        }
+
+        .media-buttons .link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 18px;
+            height: 34px;
+            width: 34px;
+            border-radius: 50%;
+            margin: 0 8px;
+            background-color: #4a5568;
+            /* a neutral gray */
+            text-decoration: none;
+            transition: transform 0.3s ease;
+        }
+
+        .media-buttons .link:hover {
+            transform: scale(1.1);
+        }
+
+        .link.linkedin {
+            background: #0077b5;
+        }
+    </style>
 </head>
+
 <body>
     <div class="profile-card">
         <div class="image">
-            <img src="" alt="" class="profile-image">
+            <img src="image2.jpg" alt="profile image" class="profile-image">
         </div>
         <div class="text-data">
             <span class="name">Nitin Tiwari</span>
-            <span class="job">Web Developer & Software Engineer</span>
+            <span class="job">Software Engineer & Web Developer</span>
         </div>
+
+        <div class="contact-info">
+            <a href="tel:8115622782">
+                <i class='bx bxs-phone'></i>
+                <span>8115622782</span>
+            </a>
+            <a href="mailto:nitin@gmail.com">
+                <i class='bx bxs-envelope'></i>
+                <span>nitinks3366@gmail.com</span>
+            </a>
+        </div>
+
         <div class="media-buttons">
             <a href="https://www.instagram.com/nitin_tiwari_999" style="background: #e1306c" class="link">
                 <i class='bx bxl-instagram'></i>
             </a>
-            <a href="https://linkedin.com/in/nitin-tiwari-272508281" class="link">
-                <i class='bx bxl-linkedin' ></i>
+            <a href="https://linkedin.com/in/nitin-tiwari-272508281" class="link linkedin">
+                <i class='bx bxl-linkedin'></i>
+            </a>
+            <a href="https://github.com/nitin811" class="link github">
+                <i class='bx bxl-github'></i>
             </a>
         </div>
     </div>
 </body>
+
 </html>
