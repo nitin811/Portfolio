@@ -212,9 +212,9 @@
                 Programming Languages</h3>
               <ul
                 class="space-y-2 text-gray-600 dark:text-gray-400 font-semibold group-hover:text-gray-900 dark:group-hover:text-gray-100">
-                <li class="transition-all duration-300 group-hover:pl-3">C++</li>
+                <li class="transition-all duration-300 group-hover:pl-3">C/C++</li>
                 <li class="transition-all duration-300 group-hover:pl-3">Python</li>
-                <li class="transition-all duration-300 group-hover:pl-3">C</li>
+                <!-- <li class="transition-all duration-300 group-hover:pl-3">C</li> -->
               </ul>
             </div>
             <!-- Libraries / Frameworks -->
@@ -228,6 +228,7 @@
                 Libraries / Frameworks</h3>
               <ul
                 class="space-y-2 text-gray-600 dark:text-gray-400 font-semibold group-hover:text-gray-900 dark:group-hover:text-gray-100">
+                <li class="transition-all duration-300 group-hover:pl-3">Tailwind CSS</li>
                 <li class="transition-all duration-300 group-hover:pl-3">NumPy</li>
                 <li class="transition-all duration-300 group-hover:pl-3">Pandas</li>
                 <li class="transition-all duration-300 group-hover:pl-3">Matplotlib</li>
@@ -317,54 +318,60 @@
 
     <!-- Projects Section -->
     <section id="projects"
-      class="bg-gray-100 py-20 section-snap rounded-t-3xl transition-colors duration-500 dark:bg-gray-900">
-      <div class="container mx-auto px-6 fade-in" style="animation-delay: 0.4s;">
-        <div class="max-w-4xl mx-auto text-center mb-12">
+      class="bg-gray-100 py-20 px-4 sm:px-6 lg:px-8 section-snap rounded-t-3xl transition-colors duration-500 dark:bg-gray-900">
+      <div class="max-w-7xl mx-auto fade-in" style="animation-delay: 0.4s;">
+        <div class="text-center mb-12">
           <h2
             class="text-3xl md:text-4xl font-bold text-gray-800 mb-8 border-b-2 border-indigo-600 pb-2 inline-block dark:text-white">
-            My Projects</h2>
+            My Projects
+          </h2>
         </div>
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+
+        <!-- Responsive grid with equal spacing -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-8 gap-y-10 place-items-stretch">
+
           <!-- Project Card 1 -->
           <div
-            class="bg-white p-6 rounded-3xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 dark:bg-gray-800">
-            <h3 class="text-xl font-bold text-gray-800 mb-2 dark:text-white">Personal Portfolio Website</h3>
-            <p class="text-gray-600 mb-4 dark:text-gray-400">
-              A personal portfolio website to showcase projects, skills, and contact info with a clean, responsive
-              design. Built using HTML, CSS, and JavaScript, it features interactive UI elements and GitHub integration
-              to present work professionally.
-            </p>
+            class="bg-white h-full flex flex-col justify-between p-6 md:p-8 rounded-3xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 dark:bg-gray-800">
+            <div>
+              <h3 class="text-xl font-bold text-gray-800 mb-3 dark:text-white">Personal Portfolio Website</h3>
+              <p class="text-gray-600 mb-5 dark:text-gray-400">
+                A personal portfolio website to showcase projects, skills, and contact info with a clean, responsive
+                design. Built using HTML, CSS, and JavaScript, it features interactive UI elements and GitHub
+                integration
+                to present work professionally.
+              </p>
+            </div>
             <a href="https://github.com/nitin811/Portfolio"
-              class="text-indigo-600 font-semibold hover:text-indigo-800 transition-colors duration-300 rounded-md dark:text-indigo-400 dark:hover:text-indigo-300">View
-              Details →</a>
+              class="mt-4 text-indigo-600 font-semibold hover:text-indigo-800 transition-colors duration-300 rounded-md dark:text-indigo-400 dark:hover:text-indigo-300">
+              View Details →
+            </a>
           </div>
+
           <!-- Project Card 2 -->
           <div
-            class="bg-white p-6 rounded-3xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 dark:bg-gray-800">
-            <h3 class="text-xl font-bold text-gray-800 mb-2 dark:text-white">Weather Forecast</h3>
-            <p class="text-gray-600 mb-4 dark:text-gray-400">
-              A modern weather application providing real-time weather updates by city name or current location. Built
-              with HTML, CSS, and JavaScript, it features a responsive design with 3D tilt effects, dark/light mode
-              toggle, and integration with WeatherAPI for accurate data.
-            </p>
+            class="bg-white h-full flex flex-col justify-between p-6 md:p-8 rounded-3xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 dark:bg-gray-800">
+            <div>
+              <h3 class="text-xl font-bold text-gray-800 mb-3 dark:text-white">Weather Forecast</h3>
+              <p class="text-gray-600 mb-5 dark:text-gray-400">
+                A modern weather application providing real-time weather updates by city name or current location. Built
+                with HTML, CSS, and JavaScript, it features a responsive design with 3D tilt effects, dark/light mode
+                toggle, and integration with WeatherAPI for accurate data.
+              </p>
+            </div>
             <a href="https://github.com/nitin811/Weather-Forecast"
-              class="text-indigo-600 font-semibold hover:text-indigo-800 transition-colors duration-300 rounded-md dark:text-indigo-400 dark:hover:text-indigo-300">View
-              Details →</a>
+              class="mt-4 text-indigo-600 font-semibold hover:text-indigo-800 transition-colors duration-300 rounded-md dark:text-indigo-400 dark:hover:text-indigo-300">
+              View Details →
+            </a>
           </div>
-          <!-- Project Card 3 -->
-          <!-- <div
-            class="bg-white p-6 rounded-3xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 dark:bg-gray-800">
-            <h3 class="text-xl font-bold text-gray-800 mb-2 dark:text-white">Project Name 3</h3>
-            <p class="text-gray-600 mb-4 dark:text-gray-400">
-              A brief description of your project. Mention the technologies used and what problem it solves.
-            </p>
-            <a href="#"
-              class="text-indigo-600 font-semibold hover:text-indigo-800 transition-colors duration-300 rounded-md dark:text-indigo-400 dark:hover:text-indigo-300">View
-              Details →</a>
-          </div> -->
+
+          <!-- Add more project cards below -->
+
         </div>
       </div>
     </section>
+
+
 
     <!--Hobby-->
     <section id="hobbies" class="py-16 sm:py-20 container mx-auto px-6 section-snap">
@@ -443,7 +450,8 @@
 
   </main>
 
-  <a href="index1.html" target="_blank" class="fixed bottom-8 right-8 bg-indigo-600 text-white w-16 h-16 rounded-full shadow-lg hover:bg-indigo-700 transition-all duration-300 flex items-center justify-center text-2xl transform hover:scale-110 z-50">
+  <a href="index1.html" target="_blank"
+    class="fixed bottom-8 right-8 bg-indigo-600 text-white w-16 h-16 rounded-full shadow-lg hover:bg-indigo-700 transition-all duration-300 flex items-center justify-center text-2xl transform hover:scale-110 z-50">
     <i class="fas fa-user"></i>
   </a>
 
