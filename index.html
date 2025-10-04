@@ -318,58 +318,62 @@
 
     <!-- Projects Section -->
     <section id="projects"
-      class="bg-gray-100 py-20 px-4 sm:px-6 lg:px-8 section-snap rounded-t-3xl transition-colors duration-500 dark:bg-gray-900">
+      class="bg-gray-100 dark:bg-gray-900 py-16 px-4 sm:px-6 lg:px-8 section-snap rounded-t-3xl transition-colors duration-500">
       <div class="max-w-7xl mx-auto fade-in" style="animation-delay: 0.4s;">
+
+        <!-- Heading -->
         <div class="text-center mb-12">
           <h2
-            class="text-3xl md:text-4xl font-bold text-gray-800 mb-8 border-b-2 border-indigo-600 pb-2 inline-block dark:text-white">
+            class="text-3xl sm:text-4xl font-bold text-gray-800 dark:text-white border-b-2 border-indigo-600 pb-2 inline-block">
             My Projects
           </h2>
         </div>
 
-        <!-- Responsive grid with equal spacing -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-8 gap-y-10 place-items-stretch">
+        <!-- Auto-adjusting grid with equal height cards -->
+        <div class="grid gap-8 sm:gap-10 grid-cols-[repeat(auto-fit,minmax(280px,1fr))] place-items-stretch">
 
           <!-- Project Card 1 -->
           <div
-            class="bg-white h-full flex flex-col justify-between p-6 md:p-8 rounded-3xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 dark:bg-gray-800">
+            class="bg-white dark:bg-gray-800 h-full flex flex-col justify-between p-6 md:p-8 rounded-3xl shadow-md hover:shadow-xl hover:scale-[1.03] transition-all duration-300">
             <div>
-              <h3 class="text-xl font-bold text-gray-800 mb-3 dark:text-white">Personal Portfolio Website</h3>
-              <p class="text-gray-600 mb-5 dark:text-gray-400">
-                A personal portfolio website to showcase projects, skills, and contact info with a clean, responsive
-                design. Built using HTML, CSS, and JavaScript, it features interactive UI elements and GitHub
-                integration
-                to present work professionally.
+              <h3 class="text-lg sm:text-xl font-bold text-gray-800 dark:text-white mb-3">
+                Personal Portfolio Website
+              </h3>
+              <p class="text-sm sm:text-base text-gray-600 dark:text-gray-400">
+                A personal portfolio to showcase projects, skills, and contact info. Built with HTML, CSS, and JS,
+                featuring responsive design and GitHub integration.
               </p>
             </div>
             <a href="https://github.com/nitin811/Portfolio"
-              class="mt-4 text-indigo-600 font-semibold hover:text-indigo-800 transition-colors duration-300 rounded-md dark:text-indigo-400 dark:hover:text-indigo-300">
+              class="mt-4 text-indigo-600 dark:text-indigo-400 font-semibold hover:text-indigo-800 dark:hover:text-indigo-300 transition duration-300">
               View Details →
             </a>
           </div>
 
           <!-- Project Card 2 -->
           <div
-            class="bg-white h-full flex flex-col justify-between p-6 md:p-8 rounded-3xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 dark:bg-gray-800">
+            class="bg-white dark:bg-gray-800 h-full flex flex-col justify-between p-6 md:p-8 rounded-3xl shadow-md hover:shadow-xl hover:scale-[1.03] transition-all duration-300">
             <div>
-              <h3 class="text-xl font-bold text-gray-800 mb-3 dark:text-white">Weather Forecast</h3>
-              <p class="text-gray-600 mb-5 dark:text-gray-400">
-                A modern weather application providing real-time weather updates by city name or current location. Built
-                with HTML, CSS, and JavaScript, it features a responsive design with 3D tilt effects, dark/light mode
-                toggle, and integration with WeatherAPI for accurate data.
+              <h3 class="text-lg sm:text-xl font-bold text-gray-800 dark:text-white mb-3">
+                Weather Forecast App
+              </h3>
+              <p class="text-sm sm:text-base text-gray-600 dark:text-gray-400">
+                Real-time weather updates using city or location. Responsive design with 3D tilt effect, WeatherAPI,
+                and light/dark mode.
               </p>
             </div>
             <a href="https://github.com/nitin811/Weather-Forecast"
-              class="mt-4 text-indigo-600 font-semibold hover:text-indigo-800 transition-colors duration-300 rounded-md dark:text-indigo-400 dark:hover:text-indigo-300">
+              class="mt-4 text-indigo-600 dark:text-indigo-400 font-semibold hover:text-indigo-800 dark:hover:text-indigo-300 transition duration-300">
               View Details →
             </a>
           </div>
 
-          <!-- Add more project cards below -->
+          <!-- 🧩 Add more project cards below (it will auto-adjust) -->
 
         </div>
       </div>
     </section>
+
 
 
 
@@ -450,6 +454,7 @@
 
   </main>
 
+  <!--Link index1.html page-->
   <a href="index1.html" target="_blank"
     class="fixed bottom-8 right-8 bg-indigo-600 text-white w-16 h-16 rounded-full shadow-lg hover:bg-indigo-700 transition-all duration-300 flex items-center justify-center text-2xl transform hover:scale-110 z-50">
     <i class="fas fa-user"></i>
