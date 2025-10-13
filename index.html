@@ -59,6 +59,106 @@
       z-index: 40;
       /* Tailwind z-index for 'z-40' */
     }
+
+    /* --- Modern Elegant Welcome Screen --- */
+    #welcome-screen {
+      position: fixed;
+      inset: 0;
+      background: linear-gradient(135deg, #667eea, #764ba2, #6b73ff);
+      background-size: 300% 300%;
+      animation: gradientFlow 6s ease infinite, fadeOut 2s ease-in-out 3.5s forwards;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      color: white;
+      font-family: 'Poppins', sans-serif;
+      z-index: 50;
+      overflow: hidden;
+    }
+
+    @keyframes gradientFlow {
+      0% {
+        background-position: 0% 50%;
+      }
+
+      50% {
+        background-position: 100% 50%;
+      }
+
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+
+    @keyframes fadeOut {
+      to {
+        opacity: 0;
+        visibility: hidden;
+      }
+    }
+
+    /* Glow text animation */
+    #welcome-screen h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-align: center;
+      text-shadow: 0 0 10px rgba(255, 255, 255, 0.6),
+        0 0 20px rgba(255, 255, 255, 0.4),
+        0 0 30px rgba(255, 255, 255, 0.2);
+      animation: glowText 2.5s ease-in-out infinite alternate;
+    }
+
+    @keyframes glowText {
+      from {
+        text-shadow: 0 0 10px rgba(255, 255, 255, 0.6),
+          0 0 20px rgba(255, 255, 255, 0.4);
+      }
+
+      to {
+        text-shadow: 0 0 20px rgba(255, 255, 255, 0.9),
+          0 0 40px rgba(255, 255, 255, 0.6),
+          0 0 60px rgba(255, 255, 255, 0.4);
+      }
+    }
+
+    /* Elegant Ring Loader */
+    .loader-ring {
+      position: relative;
+      width: 60px;
+      height: 60px;
+      margin-top: 2rem;
+    }
+
+    .loader-ring:before,
+    .loader-ring:after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      border: 4px solid transparent;
+      border-top-color: white;
+      animation: rotate 1.5s linear infinite;
+    }
+
+    .loader-ring:after {
+      border: 4px solid transparent;
+      border-bottom-color: rgba(255, 255, 255, 0.6);
+      animation-delay: 0.75s;
+    }
+
+    @keyframes rotate {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    /* Fade-in for main content */
+    #main-content {
+      opacity: 0;
+      transition: opacity 1.5s ease-in-out;
+    }
   </style>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 
@@ -67,6 +167,12 @@
 
 <body
   class="min-h-screen flex flex-col bg-gray-100 text-gray-800 transition-colors duration-500 dark:bg-gray-900 dark:text-gray-200">
+
+  <!-- 🟣 Welcome Screen -->
+  <div id="welcome-screen">
+    <h1 class="text-4xl font-bold">Hii, Welcome to My Portfolio!!!</h1>
+    <div class="spinner"></div>
+  </div>
 
   <!-- Header & Navigation -->
   <header class="sticky top-0 z-50 shadow-md bg-white transition-colors duration-500 dark:bg-gray-800">
@@ -549,15 +655,6 @@
         });
       });
 
-
-      navLinks.forEach(link => {
-        link.addEventListener('click', () => {
-          if (!navMenu.classList.contains('hidden')) {
-            navMenu.classList.add('hidden');
-            navMenu.classList.remove('flex');
-          }
-        });
-      });
     });
 
   </script>
