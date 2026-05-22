@@ -1,662 +1,1786 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth" data-theme="light">
-
+<html lang="en">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Nitin Tiwari - Portfolio</title>
-  <!-- Use Tailwind CSS for a modern, mobile-first design -->
-  <script src="https://cdn.tailwindcss.com"></script>
+  <title>Nitin Tiwari — Software Engineer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
-
-    body {
-      font-family: 'Inter', sans-serif;
+    /* ===== CSS VARIABLES ===== */
+    :root {
+      --bg: #080b12;
+      --bg2: #0e1320;
+      --surface: #131927;
+      --surface2: #1c2538;
+      --border: rgba(255, 255, 255, 0.07);
+      --accent: #4f8aff;
+      --accent2: #a78bfa;
+      --accent3: #34d399;
+      --text: #e8ecf4;
+      --text-muted: #7a8499;
+      --text-subtle: #3d4a63;
+      --glow: rgba(79, 138, 255, 0.18);
     }
 
-    /* Custom scroll-snap for a satisfying user experience on scroll */
+    /* ===== RESET & BASE ===== */
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
     html {
       scroll-behavior: smooth;
     }
 
-    .section-snap {
-      scroll-snap-align: start;
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      overflow-x: hidden;
+      line-height: 1.6;
     }
 
-    /* Fade-in and slide-up animation */
-    .fade-in {
-      animation: fadeIn 1s ease-out forwards;
+    /* Subtle noise texture */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      background-size: 200px;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.6;
+    }
+
+    /* Ambient background blobs */
+    .bg-blob {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(120px);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .bg-blob-1 {
+      width: 600px;
+      height: 600px;
+      background: rgba(79, 138, 255, 0.06);
+      top: -200px;
+      right: -150px;
+    }
+
+    .bg-blob-2 {
+      width: 500px;
+      height: 500px;
+      background: rgba(167, 139, 250, 0.05);
+      bottom: 200px;
+      left: -150px;
+    }
+
+    .bg-blob-3 {
+      width: 400px;
+      height: 400px;
+      background: rgba(52, 211, 153, 0.04);
+      top: 60%;
+      right: 20%;
+    }
+
+    /* ===== LOADER ===== */
+    #loader {
+      position: fixed;
+      inset: 0;
+      background: var(--bg);
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 20px;
+      transition: opacity 0.6s ease, visibility 0.6s ease;
+    }
+
+    #loader.hidden {
       opacity: 0;
-      transform: translateY(20px);
+      visibility: hidden;
     }
 
-    @keyframes fadeIn {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+    .loader-name {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      animation: blink 1.4s ease-in-out infinite;
     }
 
-    @keyframes slow-pulse {
+    @keyframes blink {
 
       0%,
       100% {
-        transform: scale(1);
+        opacity: 0.3
       }
 
       50% {
-        transform: scale(1.2);
+        opacity: 1
       }
     }
 
-    .animate-slow-pulse {
-      animation: slow-pulse 1.5s infinite;
-    }
-
-    /* Ensure the mobile menu is on top of other content */
-    #nav-menu {
-      z-index: 40;
-      /* Tailwind z-index for 'z-40' */
-    }
-
-    /* --- Modern Elegant Welcome Screen --- */
-    #welcome-screen {
-      position: fixed;
-      inset: 0;
-      background: linear-gradient(135deg, #667eea, #764ba2, #6b73ff);
-      background-size: 300% 300%;
-      animation: gradientFlow 6s ease infinite, fadeOut 2s ease-in-out 3.5s forwards;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-      color: white;
-      font-family: 'Poppins', sans-serif;
-      z-index: 50;
+    .loader-bar-wrap {
+      width: 160px;
+      height: 2px;
+      background: var(--surface2);
+      border-radius: 99px;
       overflow: hidden;
     }
 
-    @keyframes gradientFlow {
-      0% {
-        background-position: 0% 50%;
+    .loader-bar {
+      height: 100%;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      border-radius: 99px;
+      animation: loadBar 2s ease forwards;
+    }
+
+    @keyframes loadBar {
+      from {
+        width: 0
+      }
+
+      to {
+        width: 100%
+      }
+    }
+
+    /* ===== NAV ===== */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: 20px 5%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: background 0.4s, backdrop-filter 0.4s, box-shadow 0.4s;
+    }
+
+    nav.scrolled {
+      background: rgba(8, 11, 18, 0.85);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      box-shadow: 0 0 40px rgba(0, 0, 0, 0.4);
+    }
+
+    .nav-logo {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--text);
+      text-decoration: none;
+      letter-spacing: -0.02em;
+    }
+
+    .nav-logo span {
+      color: var(--accent);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 36px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.875rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      transition: color 0.2s;
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -3px;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: var(--accent);
+      transition: width 0.3s;
+    }
+
+    .nav-links a:hover {
+      color: var(--text);
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .nav-cta {
+      background: var(--accent);
+      color: #fff !important;
+      padding: 8px 18px;
+      border-radius: 6px;
+      font-weight: 500 !important;
+      transition: background 0.2s, transform 0.2s !important;
+    }
+
+    .nav-cta:hover {
+      background: #6699ff !important;
+      transform: translateY(-1px);
+    }
+
+    .nav-cta::after {
+      display: none !important;
+    }
+
+    /* Hamburger */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+      z-index: 110;
+    }
+
+    .hamburger span {
+      width: 24px;
+      height: 2px;
+      background: var(--text);
+      border-radius: 2px;
+      transition: transform 0.3s, opacity 0.3s;
+    }
+
+    .hamburger.open span:nth-child(1) {
+      transform: translateY(7px) rotate(45deg);
+    }
+
+    .hamburger.open span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .hamburger.open span:nth-child(3) {
+      transform: translateY(-7px) rotate(-45deg);
+    }
+
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(8, 11, 18, 0.97);
+      backdrop-filter: blur(20px);
+      z-index: 99;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 36px;
+    }
+
+    .mobile-menu.open {
+      display: flex;
+    }
+
+    .mobile-menu a {
+      font-family: 'Syne', sans-serif;
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--text);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .mobile-menu a:hover {
+      color: var(--accent);
+    }
+
+    /* ===== SECTIONS WRAPPER ===== */
+    .container {
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 0 5%;
+      position: relative;
+      z-index: 1;
+    }
+
+    section {
+      padding: 100px 0;
+    }
+
+    /* ===== SECTION LABEL ===== */
+    .section-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 18px;
+    }
+
+    .section-label::before {
+      content: '';
+      display: inline-block;
+      width: 28px;
+      height: 1px;
+      background: var(--accent);
+    }
+
+    .section-title {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 800;
+      line-height: 1.1;
+      color: var(--text);
+      letter-spacing: -0.03em;
+    }
+
+    /* ===== HERO ===== */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding-top: 120px;
+    }
+
+    .hero-layout {
+      display: grid;
+      grid-template-columns: 1fr 420px;
+      gap: 60px;
+      align-items: center;
+      width: 100%;
+    }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 99px;
+      padding: 6px 16px;
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      letter-spacing: 0.05em;
+      margin-bottom: 24px;
+    }
+
+    .hero-eyebrow .dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--accent3);
+      animation: pulse-dot 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse-dot {
+
+      0%,
+      100% {
+        box-shadow: 0 0 0 0 rgba(52, 211, 153, 0.4);
       }
 
       50% {
-        background-position: 100% 50%;
-      }
-
-      100% {
-        background-position: 0% 50%;
+        box-shadow: 0 0 0 5px rgba(52, 211, 153, 0);
       }
     }
 
-    @keyframes fadeOut {
-      to {
-        opacity: 0;
-        visibility: hidden;
-      }
+    .hero-name {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(2.8rem, 6vw, 5.2rem);
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      line-height: 1.0;
+      color: var(--text);
+      margin-bottom: 8px;
     }
 
-    /* Glow text animation */
-    #welcome-screen h1 {
-      font-size: 2.5rem;
-      font-weight: 700;
-      letter-spacing: 1px;
-      text-align: center;
-      text-shadow: 0 0 10px rgba(255, 255, 255, 0.6),
-        0 0 20px rgba(255, 255, 255, 0.4),
-        0 0 30px rgba(255, 255, 255, 0.2);
-      animation: glowText 2.5s ease-in-out infinite alternate;
+    .hero-name .highlight {
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
 
-    @keyframes glowText {
-      from {
-        text-shadow: 0 0 10px rgba(255, 255, 255, 0.6),
-          0 0 20px rgba(255, 255, 255, 0.4);
-      }
-
-      to {
-        text-shadow: 0 0 20px rgba(255, 255, 255, 0.9),
-          0 0 40px rgba(255, 255, 255, 0.6),
-          0 0 60px rgba(255, 255, 255, 0.4);
-      }
+    .hero-role {
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      font-weight: 300;
+      margin-bottom: 24px;
+      letter-spacing: 0.01em;
     }
 
-    /* Elegant Ring Loader */
-    .loader-ring {
+    .hero-bio {
+      font-size: 1rem;
+      color: var(--text-muted);
+      line-height: 1.8;
+      max-width: 520px;
+      margin-bottom: 40px;
+    }
+
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+      padding: 13px 28px;
+      border-radius: 8px;
+      font-weight: 500;
+      font-size: 0.9rem;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 4px 20px rgba(79, 138, 255, 0.3);
+    }
+
+    .btn-primary:hover {
+      background: #6699ff;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(79, 138, 255, 0.4);
+    }
+
+    .btn-ghost {
+      color: var(--text-muted);
+      padding: 13px 28px;
+      border-radius: 8px;
+      font-weight: 500;
+      font-size: 0.9rem;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: 1px solid var(--border);
+      transition: color 0.2s, border-color 0.2s, transform 0.2s;
+    }
+
+    .btn-ghost:hover {
+      color: var(--text);
+      border-color: var(--text-muted);
+      transform: translateY(-2px);
+    }
+
+    .hero-social {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-top: 40px;
+      padding-top: 32px;
+      border-top: 1px solid var(--border);
+    }
+
+    .hero-social span {
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-subtle);
+    }
+
+    .social-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.95rem;
+      transition: color 0.2s, border-color 0.2s, background 0.2s, transform 0.2s;
+    }
+
+    .social-icon:hover {
+      color: var(--accent);
+      border-color: var(--accent);
+      background: rgba(79, 138, 255, 0.08);
+      transform: translateY(-2px);
+    }
+
+    /* Hero Card */
+    .hero-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 40px 32px;
       position: relative;
-      width: 60px;
-      height: 60px;
-      margin-top: 2rem;
+      overflow: hidden;
     }
 
-    .loader-ring:before,
-    .loader-ring:after {
-      content: "";
+    .hero-card::before {
+      content: '';
       position: absolute;
       inset: 0;
+      background: linear-gradient(135deg, rgba(79, 138, 255, 0.06), transparent 60%);
+      pointer-events: none;
+    }
+
+    .hero-card-avatar {
+      width: 90px;
+      height: 90px;
       border-radius: 50%;
-      border: 4px solid transparent;
-      border-top-color: white;
-      animation: rotate 1.5s linear infinite;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Syne', sans-serif;
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 20px;
+      box-shadow: 0 0 30px rgba(79, 138, 255, 0.3);
     }
 
-    .loader-ring:after {
-      border: 4px solid transparent;
-      border-bottom-color: rgba(255, 255, 255, 0.6);
-      animation-delay: 0.75s;
+    .hero-card h3 {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 4px;
     }
 
-    @keyframes rotate {
-      to {
-        transform: rotate(360deg);
+    .hero-card .role-badge {
+      font-size: 0.82rem;
+      color: var(--accent);
+      margin-bottom: 28px;
+    }
+
+    .info-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 0;
+      border-top: 1px solid var(--border);
+      font-size: 0.875rem;
+    }
+
+    .info-row i {
+      width: 32px;
+      height: 32px;
+      background: var(--surface2);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent);
+      font-size: 0.82rem;
+      flex-shrink: 0;
+    }
+
+    .info-row a,
+    .info-row span {
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .info-row a:hover {
+      color: var(--accent);
+    }
+
+    /* ===== ABOUT ===== */
+    #about {
+      background: var(--bg2);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    .about-text p {
+      font-size: 1rem;
+      color: var(--text-muted);
+      line-height: 1.85;
+      margin-bottom: 20px;
+    }
+
+    .about-text p strong {
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    .about-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 32px;
+    }
+
+    .stat-box {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 20px;
+      text-align: center;
+      transition: border-color 0.3s, transform 0.3s;
+    }
+
+    .stat-box:hover {
+      border-color: var(--accent);
+      transform: translateY(-3px);
+    }
+
+    .stat-num {
+      font-family: 'Syne', sans-serif;
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--accent);
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+
+    .stat-label {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      letter-spacing: 0.04em;
+    }
+
+    .about-right .hobby-list {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-top: 8px;
+    }
+
+    .hobby-item {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 18px 20px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      transition: border-color 0.3s, transform 0.3s;
+    }
+
+    .hobby-item:hover {
+      border-color: var(--border);
+      transform: translateX(6px);
+    }
+
+    .hobby-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      flex-shrink: 0;
+    }
+
+    .hobby-icon.chess {
+      background: rgba(79, 138, 255, 0.15);
+      color: var(--accent);
+    }
+
+    .hobby-icon.stocks {
+      background: rgba(52, 211, 153, 0.15);
+      color: var(--accent3);
+    }
+
+    .hobby-info strong {
+      display: block;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 3px;
+    }
+
+    .hobby-info span {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+
+    /* ===== SKILLS ===== */
+    #skills {}
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+    }
+
+    .skill-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 28px 24px;
+      transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .skill-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .skill-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+    }
+
+    .skill-card:hover::before {
+      opacity: 1;
+    }
+
+    .skill-card.blue::before {
+      background: var(--accent);
+    }
+
+    .skill-card.purple::before {
+      background: var(--accent2);
+    }
+
+    .skill-card.green::before {
+      background: var(--accent3);
+    }
+
+    .skill-card.orange::before {
+      background: #fb923c;
+    }
+
+    .skill-card.teal::before {
+      background: #22d3ee;
+    }
+
+    .skill-card:hover.blue {
+      border-color: rgba(79, 138, 255, 0.3);
+    }
+
+    .skill-card:hover.purple {
+      border-color: rgba(167, 139, 250, 0.3);
+    }
+
+    .skill-card:hover.green {
+      border-color: rgba(52, 211, 153, 0.3);
+    }
+
+    .skill-card:hover.orange {
+      border-color: rgba(251, 146, 60, 0.3);
+    }
+
+    .skill-card:hover.teal {
+      border-color: rgba(34, 211, 238, 0.3);
+    }
+
+    .skill-card-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      margin-bottom: 16px;
+    }
+
+    .icon-blue {
+      background: rgba(79, 138, 255, 0.12);
+      color: var(--accent);
+    }
+
+    .icon-purple {
+      background: rgba(167, 139, 250, 0.12);
+      color: var(--accent2);
+    }
+
+    .icon-green {
+      background: rgba(52, 211, 153, 0.12);
+      color: var(--accent3);
+    }
+
+    .icon-orange {
+      background: rgba(251, 146, 60, 0.12);
+      color: #fb923c;
+    }
+
+    .icon-teal {
+      background: rgba(34, 211, 238, 0.12);
+      color: #22d3ee;
+    }
+
+    .skill-card h4 {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+
+    .skill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+    }
+
+    .skill-tag {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 5px 11px;
+      font-size: 0.8rem;
+      color: var(--text);
+      font-weight: 400;
+    }
+
+    /* ===== CODING PROFILES ===== */
+    #profiles {
+      background: var(--bg2);
+    }
+
+    .profiles-intro {
+      font-size: 1rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+      max-width: 520px;
+      margin-bottom: 48px;
+    }
+
+    .profiles-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+    }
+
+    .profile-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 28px 24px;
+      text-decoration: none;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+    }
+
+    .profile-card:hover {
+      border-color: rgba(79, 138, 255, 0.4);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+    }
+
+    .profile-card-logo {
+      width: 48px;
+      height: 48px;
+      background: var(--surface2);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+    }
+
+    .profile-card h4 {
+      font-family: 'Syne', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .profile-card p {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    .profile-card .arrow {
+      color: var(--text-subtle);
+      font-size: 0.85rem;
+      margin-top: auto;
+      transition: color 0.2s, transform 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .profile-card:hover .arrow {
+      color: var(--accent);
+      transform: translateX(4px);
+    }
+
+    /* ===== PROJECTS ===== */
+    #projects {}
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 20px;
+    }
+
+    .project-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .project-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .project-card:hover {
+      border-color: rgba(79, 138, 255, 0.25);
+      transform: translateY(-5px);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+    }
+
+    .project-card:hover::before {
+      opacity: 1;
+    }
+
+    .project-num {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      color: var(--text-subtle);
+      text-transform: uppercase;
+    }
+
+    .project-card h3 {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1.3;
+    }
+
+    .project-card p {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+      flex: 1;
+    }
+
+    .project-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+      margin-top: auto;
+    }
+
+    .tech-stack {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .tech-chip {
+      background: rgba(79, 138, 255, 0.1);
+      color: var(--accent);
+      border-radius: 5px;
+      padding: 3px 9px;
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.03em;
+    }
+
+    .project-link {
+      color: var(--text-subtle);
+      text-decoration: none;
+      font-size: 0.88rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: color 0.2s;
+      flex-shrink: 0;
+    }
+
+    .project-link:hover {
+      color: var(--accent);
+    }
+
+    /* ===== CONTACT ===== */
+    #contact {
+      background: var(--bg2);
+    }
+
+    .contact-layout {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    .contact-left p {
+      font-size: 1rem;
+      color: var(--text-muted);
+      line-height: 1.8;
+      margin: 20px 0 36px;
+    }
+
+    .contact-info-list {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .contact-info-item {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .contact-info-item .ci-icon {
+      width: 40px;
+      height: 40px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent);
+      font-size: 0.9rem;
+      flex-shrink: 0;
+    }
+
+    .contact-info-item a,
+    .contact-info-item span {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .contact-info-item a:hover {
+      color: var(--accent);
+    }
+
+    /* Form */
+    .contact-form {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 36px 32px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .form-control {
+      width: 100%;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 12px 16px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.9rem;
+      color: var(--text);
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      resize: none;
+    }
+
+    .form-control::placeholder {
+      color: var(--text-subtle);
+    }
+
+    .form-control:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(79, 138, 255, 0.12);
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .form-submit {
+      width: 100%;
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      padding: 14px 24px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 4px 20px rgba(79, 138, 255, 0.25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .form-submit:hover {
+      background: #6699ff;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(79, 138, 255, 0.35);
+    }
+
+    #form-msg {
+      text-align: center;
+      font-size: 0.85rem;
+      margin-top: 14px;
+      min-height: 20px;
+    }
+
+    #form-msg.success {
+      color: var(--accent3);
+    }
+
+    #form-msg.error {
+      color: #f87171;
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 48px 5%;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .footer-name {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--text);
+      letter-spacing: -0.02em;
+      margin-bottom: 12px;
+    }
+
+    .footer-name span {
+      color: var(--accent);
+    }
+
+    footer p {
+      font-size: 0.82rem;
+      color: var(--text-subtle);
+      margin-bottom: 24px;
+    }
+
+    .footer-socials {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+    }
+
+    /* ===== ANIMATIONS ===== */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .reveal-delay-1 {
+      transition-delay: 0.1s;
+    }
+
+    .reveal-delay-2 {
+      transition-delay: 0.2s;
+    }
+
+    .reveal-delay-3 {
+      transition-delay: 0.3s;
+    }
+
+    .reveal-delay-4 {
+      transition-delay: 0.4s;
+    }
+
+    /* ===== DIVIDER ===== */
+    .section-divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border), transparent);
+      margin: 0 5%;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 900px) {
+      .hero-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-card {
+        display: none;
+      }
+
+      .about-grid {
+        grid-template-columns: 1fr;
+        gap: 48px;
+      }
+
+      .contact-layout {
+        grid-template-columns: 1fr;
+        gap: 48px;
+      }
+
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .hamburger {
+        display: flex;
       }
     }
 
-    /* Fade-in for main content */
-    #main-content {
-      opacity: 0;
-      transition: opacity 1.5s ease-in-out;
+    @media (max-width: 640px) {
+      section {
+        padding: 72px 0;
+      }
+
+      .hero-actions {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .about-stats {
+        grid-template-columns: 1fr 1fr;
+      }
     }
   </style>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-
-
 </head>
 
-<body
-  class="min-h-screen flex flex-col bg-gray-100 text-gray-800 transition-colors duration-500 dark:bg-gray-900 dark:text-gray-200">
+<body>
 
-  <!-- 🟣 Welcome Screen -->
-  <div id="welcome-screen">
-    <h1 class="text-4xl font-bold">Hii, Welcome to My Portfolio!!!</h1>
-    <div class="spinner"></div>
+  <!-- Background blobs -->
+  <div class="bg-blob bg-blob-1"></div>
+  <div class="bg-blob bg-blob-2"></div>
+  <div class="bg-blob bg-blob-3"></div>
+
+  <!-- LOADER -->
+  <div id="loader">
+    <div class="loader-name">Nitin Tiwari</div>
+    <div class="loader-bar-wrap">
+      <div class="loader-bar"></div>
+    </div>
   </div>
 
-  <!-- Header & Navigation -->
-  <header class="sticky top-0 z-50 shadow-md bg-white dark:bg-gray-800">
-    <nav class="container mx-auto px-4 py-4 flex items-center justify-between">
+  <!-- MOBILE MENU -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#hero" onclick="closeMobile()">Home</a>
+    <a href="#about" onclick="closeMobile()">About</a>
+    <a href="#skills" onclick="closeMobile()">Skills</a>
+    <a href="#profiles" onclick="closeMobile()">Profiles</a>
+    <a href="#projects" onclick="closeMobile()">Projects</a>
+    <a href="#contact" onclick="closeMobile()">Contact</a>
+  </div>
 
-      <!-- Logo -->
-      <a href="#" class="text-2xl font-bold text-indigo-600 rounded-md">
-        Nitin Tiwari
-      </a>
+  <!-- NAV -->
+  <nav id="navbar">
+    <a href="#hero" class="nav-logo">NT<span>.</span></a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#profiles">Profiles</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact" class="nav-cta">Contact Me</a></li>
+    </ul>
+    <div class="hamburger" id="hamburger" onclick="toggleMobile()">
+      <span></span><span></span><span></span>
+    </div>
+  </nav>
 
-      <!-- Hamburger (mobile only) -->
-      <button id="menu-toggle" class="md:hidden text-3xl text-gray-700 dark:text-gray-200">
-        <i id="menu-icon" class="fas fa-bars"></i>
-      </button>
-
-      <!-- Navigation Menu -->
-      <div id="nav-menu"
-        class="hidden md:flex flex-col md:flex-row md:space-x-6 space-y-4 md:space-y-0 absolute md:static left-0 w-full md:w-auto top-full bg-white dark:bg-gray-800 shadow-lg md:shadow-none p-5 md:p-0">
-
-        <a href="#about" class="nav-link">About</a>
-        <a href="#coding-profiles" class="nav-link">Profiles</a>
-        <a href="#projects" class="nav-link">Projects</a>
-        <a href="#contact" class="nav-link">Contact</a>
-
-      </div>
-    </nav>
-  </header>
-
-
-  <main class="flex-grow">
-    <!-- Hero Section -->
-    <section id="hero"
-      class="container mx-auto px-4 py-20 md:py-32 flex flex-col lg:flex-row items-center justify-center text-center lg:text-left min-h-screen section-snap bg-gray-100 rounded-b-3xl transition-colors duration-500 dark:bg-gray-900">
-      <div class="lg:w-1/2 mb-10 lg:mb-0 fade-in">
-        <h1 class="text-4xl md:text-6xl font-extrabold leading-tight text-gray-900 mb-4 dark:text-white">
-          Hello, I'm <span class="text-indigo-600">Nitin Tiwari</span>
-        </h1>
-        <p class="text-lg md:text-xl text-gray-600 mb-8 dark:text-gray-400">
-          I’m a passionate Full Stack Developer who loves building fast, user-friendly, and reliable web applications. I
-          work across both frontend and backend technologies to create solutions that are scalable, clean, and tailored
-          to real-world needs.
-          <br>
-          <br>
-          I have a strong foundation in Data Structures and Algorithms using C++, which helps me write efficient and
-          high-performing code. I’m also skilled in Python and use it for data analysis, visualization, and machine
-          learning with tools like NumPy, Pandas, and Matplotlib.
-          <br>
-          <br>
-          I believe in writing clean code, solving problems thoughtfully, and following agile practices. I’m always
-          learning and improving, and I enjoy working in teams where I can share ideas and grow through collaboration.
-          <br>
-          <br>
-          I’m excited by projects that challenge me and offer a chance to create meaningful, impactful digital
-          experiences.
-        </p>
-        <a href="#projects"
-          class="inline-block bg-indigo-600 text-white font-semibold py-3 px-8 rounded-full shadow-lg hover:bg-indigo-700 transition-colors duration-300 transform hover:scale-105">
-          View My Work
-        </a>
-      </div>
-    </section>
-
-    <!-- About Me Section -->
-    <section id="about" class="container mx-auto px-4 py-20 section-snap rounded-xl">
-      <div
-        class="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transform transition-all duration-300 hover:scale-[1.01] dark:bg-gray-800 dark:hover:bg-gray-700">
-        <div class="max-w-4xl mx-auto text-center fade-in" style="animation-delay: 0.2s;">
-          <h2
-            class="text-3xl md:text-4xl font-bold text-gray-800 mb-8 border-b-2 border-indigo-600 pb-2 inline-block dark:text-white">
-            About Me</h2>
-          <div class="flex flex-col md:flex-row items-center md:space-x-8">
-            <div class="w-full md:w-1/3 mb-6 md:mb-0">
-              <img src="image2.jpg" alt="Your Photo" class="w-full h-auto object-cover rounded-3xl shadow-lg">
-            </div>
-            <div class="w-full md:w-2/3 text-left">
-              <p class="text-gray-600 mb-4 about-text dark:text-gray-400">
-                My journey in web development began with a curiosity for how websites work and a passion for building
-                things from scratch. Over the years, I've honed my skills in a variety of technologies, including HTML,
-                CSS, JavaScript, and modern frameworks like React. I thrive on solving complex problems and creating
-                elegant solutions that are both functional and beautiful.
-              </p>
-              <p class="text-gray-600 about-text dark:text-gray-400">
-                In addition to web development, I have a strong foundation in <b>Data Structures and Algorithms
-                  (DSA)</b> and <b>Object-Oriented Programming (OOP)</b>, with hands-on experience solving problems on
-                various coding platforms using <b>C++</b>. This expertise allows me to write efficient, scalable, and
-                clean code.
-              </p>
-            </div>
+  <!-- ========== HERO ========== -->
+  <section id="hero">
+    <div class="container">
+      <div class="hero-layout">
+        <div class="hero-content">
+          <div class="hero-eyebrow">
+            <span class="dot"></span>
+            Available for opportunities
           </div>
-        </div>
-    </section>
-
-    <!-- Skills Section -->
-    <section id="skills" class="container mx-auto px-4 py-20 section-snap rounded-xl">
-      <div
-        class="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transform transition-all duration-300 hover:scale-[1.01] dark:bg-gray-800 dark:hover:bg-gray-700">
-        <div class="max-w-4xl mx-auto text-center fade-in">
-          <h2
-            class="text-3xl md:text-4xl font-bold text-gray-800 mb-8 border-b-2 border-indigo-600 pb-2 inline-block dark:text-white">
-            My Skills</h2>
-          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 text-left">
-            <!-- Web Technologies -->
-            <div
-              class="group skills-card bg-gradient-to-br from-indigo-100 to-purple-100 dark:from-indigo-800 dark:to-purple-900 rounded-xl p-6 shadow-md transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:border-4 hover:border-indigo-400 relative overflow-hidden">
-              <div
-                class="absolute inset-0 opacity-0 group-hover:opacity-40 transition duration-300 bg-gradient-to-tr from-indigo-500 to-purple-500 rounded-xl pointer-events-none">
-              </div>
-              <h3 class="text-xl font-bold text-indigo-700 mb-4 dark:text-white transition group-hover:text-indigo-500">
-                Web Technologies</h3>
-              <ul
-                class="space-y-2 text-gray-600 dark:text-gray-400 font-semibold group-hover:text-gray-900 dark:group-hover:text-gray-100">
-                <li class="transition-all duration-300 group-hover:pl-3">HTML</li>
-                <li class="transition-all duration-300 group-hover:pl-3">CSS</li>
-                <li class="transition-all duration-300 group-hover:pl-3">JavaScript</li>
-              </ul>
-            </div>
-            <!-- Programming Languages -->
-            <div
-              class="group skills-card bg-gradient-to-br from-teal-100 to-cyan-100 dark:from-teal-900 dark:to-cyan-900 rounded-xl p-6 shadow-md transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:border-4 hover:border-teal-400 relative overflow-hidden">
-              <div
-                class="absolute inset-0 opacity-0 group-hover:opacity-40 transition duration-300 bg-gradient-to-tr from-teal-500 to-cyan-500 rounded-xl pointer-events-none">
-              </div>
-              <h3 class="text-xl font-bold text-teal-700 mb-4 dark:text-white transition group-hover:text-teal-500">
-                Programming Languages</h3>
-              <ul
-                class="space-y-2 text-gray-600 dark:text-gray-400 font-semibold group-hover:text-gray-900 dark:group-hover:text-gray-100">
-                <li class="transition-all duration-300 group-hover:pl-3">C/C++</li>
-                <li class="transition-all duration-300 group-hover:pl-3">Python</li>
-                <!-- <li class="transition-all duration-300 group-hover:pl-3">C</li> -->
-              </ul>
-            </div>
-            <!-- Libraries / Frameworks -->
-            <div
-              class="group skills-card bg-gradient-to-br from-rose-100 to-fuchsia-100 dark:from-rose-900 dark:to-fuchsia-900 rounded-xl p-6 shadow-md transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:border-4 hover:border-fuchsia-400 relative overflow-hidden">
-              <div
-                class="absolute inset-0 opacity-0 group-hover:opacity-40 transition duration-300 bg-gradient-to-tr from-rose-500 to-fuchsia-500 rounded-xl pointer-events-none">
-              </div>
-              <h3
-                class="text-xl font-bold text-fuchsia-700 mb-4 dark:text-white transition group-hover:text-fuchsia-500">
-                Libraries / Frameworks</h3>
-              <ul
-                class="space-y-2 text-gray-600 dark:text-gray-400 font-semibold group-hover:text-gray-900 dark:group-hover:text-gray-100">
-                <li class="transition-all duration-300 group-hover:pl-3">Tailwind CSS</li>
-                <li class="transition-all duration-300 group-hover:pl-3">NumPy</li>
-                <li class="transition-all duration-300 group-hover:pl-3">Pandas</li>
-                <li class="transition-all duration-300 group-hover:pl-3">Matplotlib</li>
-                <li class="transition-all duration-300 group-hover:pl-3">React</li>
-              </ul>
-            </div>
-            <!-- Tools / Platform -->
-            <div
-              class="group skills-card bg-gradient-to-br from-yellow-100 to-orange-100 dark:from-yellow-900 dark:to-orange-900 rounded-xl p-6 shadow-md transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:border-4 hover:border-orange-400 relative overflow-hidden">
-              <div
-                class="absolute inset-0 opacity-0 group-hover:opacity-40 transition duration-300 bg-gradient-to-tr from-yellow-500 to-orange-500 rounded-xl pointer-events-none">
-              </div>
-              <h3 class="text-xl font-bold text-orange-700 mb-4 dark:text-white transition group-hover:text-orange-500">
-                Tools / Platform</h3>
-              <ul
-                class="space-y-2 text-gray-600 dark:text-gray-400 font-semibold group-hover:text-gray-900 dark:group-hover:text-gray-100">
-                <li class="transition-all duration-300 group-hover:pl-3">VS Code</li>
-                <li class="transition-all duration-300 group-hover:pl-3">GitHub</li>
-                <li class="transition-all duration-300 group-hover:pl-3">Figma</li>
-                <li class="transition-all duration-300 group-hover:pl-3">Git</li>
-                <li class="transition-all duration-300 group-hover:pl-3">Postman</li>
-                <li class="transition-all duration-300 group-hover:pl-3">Excel</li>
-              </ul>
-            </div>
-            <!-- Databases -->
-            <div
-              class="group skills-card bg-gradient-to-br from-green-100 to-lime-100 dark:from-green-900 dark:to-lime-900 rounded-xl p-6 shadow-md transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:border-4 hover:border-lime-400 relative overflow-hidden">
-              <div
-                class="absolute inset-0 opacity-0 group-hover:opacity-40 transition duration-300 bg-gradient-to-tr from-green-500 to-lime-500 rounded-xl pointer-events-none">
-              </div>
-              <h3 class="text-xl font-bold text-lime-700 mb-4 dark:text-white transition group-hover:text-lime-600">
-                Databases</h3>
-              <ul
-                class="space-y-2 text-gray-600 dark:text-gray-400 font-semibold group-hover:text-gray-900 dark:group-hover:text-gray-100">
-                <li class="transition-all duration-300 group-hover:pl-3">SQL</li>
-                <li class="transition-all duration-300 group-hover:pl-3">MongoDB</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-
-
-    <!-- Coding Profiles Section -->
-    <section id="coding-profiles" class="container mx-auto px-4 py-20 section-snap rounded-xl">
-      <div class="max-w-4xl mx-auto text-center fade-in">
-        <h2
-          class="text-3xl md:text-4xl font-bold text-gray-800 mb-8 border-b-2 border-indigo-600 pb-2 inline-block dark:text-white">
-          Coding Profiles</h2>
-        <p class="text-gray-600 mb-8 dark:text-gray-400">
-          You can find my solutions and competitive programming journey on the following platforms.
-        </p>
-        <div class="flex flex-wrap justify-center items-center gap-8">
-          <!-- GFG Profile -->
-          <a href="https://www.geeksforgeeks.org/user/nitink6oog" target="_blank"
-            class="flex flex-col items-center justify-center p-4 rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 bg-white dark:bg-gray-800">
-            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v5/icons/geeksforgeeks.svg" alt="GeeksforGeeks"
-              class="h-12 w-auto mb-2 dark:invert">
-            <span class="text-gray-600 font-semibold dark:text-gray-300">GeeksforGeeks</span>
-          </a>
-          <!-- LeetCode Profile -->
-          <a href="https://leetcode.com/u/nitin_1709" target="_blank"
-            class="flex flex-col items-center justify-center p-4 rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 bg-white dark:bg-gray-800">
-            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v5/icons/leetcode.svg" alt="LeetCode"
-              class="h-12 w-auto mb-2 dark:invert">
-            <span class="text-gray-600 font-semibold dark:text-gray-300">LeetCode</span>
-          </a>
-          <!-- HackerRank Profile -->
-          <a href="https://www.hackerrank.com/profile/nitinks3366" target="_blank"
-            class="flex flex-col items-center justify-center p-4 rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 bg-white dark:bg-gray-800">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/4/40/HackerRank_Icon-1000px.png" alt="HackerRank"
-              class="h-12 w-auto mb-2 dark:invert">
-            <span class="text-gray-600 font-semibold dark:text-gray-300">HackerRank</span>
-          </a>
-          <!-- CodeChef Profile -->
-          <a href="https://www.codechef.com/users/nitin1709" target="_blank"
-            class="flex flex-col items-center justify-center p-4 rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 bg-white dark:bg-gray-800">
-            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v5/icons/codechef.svg" alt="CodeChef"
-              class="h-12 w-auto mb-2 dark:invert">
-            <span class="text-gray-600 font-semibold dark:text-gray-300">CodeChef</span>
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <!-- Projects Section -->
-    <section id="projects"
-      class="bg-gray-100 dark:bg-gray-900 py-16 px-4 sm:px-6 lg:px-8 section-snap rounded-t-3xl transition-colors duration-500">
-      <div class="max-w-7xl mx-auto fade-in" style="animation-delay: 0.4s;">
-
-        <!-- Heading -->
-        <div class="text-center mb-12">
-          <h2
-            class="text-3xl sm:text-4xl font-bold text-gray-800 dark:text-white border-b-2 border-indigo-600 pb-2 inline-block">
-            My Projects
-          </h2>
-        </div>
-
-        <!-- Auto-adjusting grid with equal height cards -->
-        <div class="grid gap-8 sm:gap-10 grid-cols-[repeat(auto-fit,minmax(280px,1fr))] place-items-stretch">
-
-          <!-- Project Card 1 -->
-          <div
-            class="bg-white dark:bg-gray-800 h-full flex flex-col justify-between p-6 md:p-8 rounded-3xl shadow-md hover:shadow-xl hover:scale-[1.03] transition-all duration-300">
-            <div>
-              <h3 class="text-lg sm:text-xl font-bold text-gray-800 dark:text-white mb-3">
-                Personal Portfolio Website
-              </h3>
-              <p class="text-sm sm:text-base text-gray-600 dark:text-gray-400">
-                A personal portfolio to showcase projects, skills, and contact info. Built with HTML, CSS, and JS,
-                featuring responsive design and GitHub integration.
-              </p>
-            </div>
-            <a href="https://github.com/nitin811/Portfolio"
-              class="mt-4 text-indigo-600 dark:text-indigo-400 font-semibold hover:text-indigo-800 dark:hover:text-indigo-300 transition duration-300">
-              View Details →
-            </a>
-          </div>
-
-          <!-- Project Card 2 -->
-          <div
-            class="bg-white dark:bg-gray-800 h-full flex flex-col justify-between p-6 md:p-8 rounded-3xl shadow-md hover:shadow-xl hover:scale-[1.03] transition-all duration-300">
-            <div>
-              <h3 class="text-lg sm:text-xl font-bold text-gray-800 dark:text-white mb-3">
-                Advanced Customizable QR Code Generator
-              </h3>
-              <p class="text-sm sm:text-base text-gray-600 dark:text-gray-400">
-                A responsive web application that generates QR codes dynamically based on user input. It supports
-                customizable size, foreground and background colors, real-time preview, and secure downloading using
-                Fetch + Blob. Built using HTML, CSS, and JavaScript with integration of the QRServer API.
-              </p>
-            </div>
-            <a href="https://github.com/nitin811/Advanced-Customizable-QR-Code-Generator"
-              class="mt-4 text-indigo-600 dark:text-indigo-400 font-semibold hover:text-indigo-800 dark:hover:text-indigo-300 transition duration-300">
-              View Details →
-            </a>
-          </div>
-
-          <!-- Project Card 3 -->
-          <div
-            class="bg-white dark:bg-gray-800 h-full flex flex-col justify-between p-6 md:p-8 rounded-3xl shadow-md hover:shadow-xl hover:scale-[1.03] transition-all duration-300">
-            <div>
-              <h3 class="text-lg sm:text-xl font-bold text-gray-800 dark:text-white mb-3">
-                Weather Forecast App
-              </h3>
-              <p class="text-sm sm:text-base text-gray-600 dark:text-gray-400">
-                Real-time weather updates using city or location. Responsive design with 3D tilt effect, WeatherAPI,
-                and light/dark mode.
-              </p>
-            </div>
-            <a href="https://github.com/nitin811/Weather-Forecast"
-              class="mt-4 text-indigo-600 dark:text-indigo-400 font-semibold hover:text-indigo-800 dark:hover:text-indigo-300 transition duration-300">
-              View Details →
-            </a>
-          </div>
-
-          <!-- 🧩 Add more project cards below (it will auto-adjust) -->
-
-        </div>
-      </div>
-    </section>
-
-
-
-
-    <!--Hobby-->
-    <section id="hobbies" class="py-16 sm:py-20 container mx-auto px-6 section-snap">
-      <div class="max-w-4xl mx-auto text-center fade-in">
-        <h2
-          class="text-3xl md:text-4xl font-bold text-gray-800 mb-8 border-b-2 border-indigo-600 pb-2 inline-block dark:text-white">
-          Hobbies
-        </h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div
-            class="bg-white p-6 rounded-3xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 dark:bg-gray-800 flex flex-col items-center">
-            <i class="fas fa-chess-knight text-5xl text-indigo-600 dark:text-indigo-400 mb-4"></i>
-            <h3 class="text-xl font-bold text-gray-800 mb-2 dark:text-white">Playing Chess</h3>
-            <p class="text-gray-600 text-center dark:text-gray-400">
-              I enjoy the strategic challenge of chess, which sharpens my problem-solving and critical thinking skills.
-              It's a great way to unwind and focus.
-            </p>
-          </div>
-          <div
-            class="bg-white p-6 rounded-3xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 dark:bg-gray-800 flex flex-col items-center">
-            <i class="fas fa-chart-line text-5xl text-green-600 dark:text-green-400 mb-4"></i>
-            <h3 class="text-xl font-bold text-gray-800 mb-2 dark:text-white">Learning Stock Market</h3>
-            <p class="text-gray-600 text-center dark:text-gray-400">
-              I am fascinated by the dynamics of the stock market. I actively learn about financial analysis and
-              investment strategies to understand market trends.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="py-16 sm:py-20 container mx-auto px-6 section-snap">
-      <div class="max-w-3xl mx-auto fade-in">
-        <div class="text-center mb-10">
-          <h2
-            class="text-3xl md:text-4xl font-bold text-gray-800 mb-4 border-b-2 border-indigo-600 pb-2 inline-block dark:text-white">
-            Get in Touch</h2>
-          <p class="text-gray-600 dark:text-gray-400 text-lg">
-            I'm currently open to new opportunities. Feel free to reach out and say hello!
+          <h1 class="hero-name">
+            Hello, I'm<br>
+            <span class="highlight">Nitin Tiwari</span>
+          </h1>
+          <p class="hero-role">Software Engineer & Full Stack Developer</p>
+          <p class="hero-bio">
+            Passionate about building fast, user-friendly, and reliable web applications.
+            I work across frontend and backend technologies with a strong foundation in
+            DSA, C++, Python, and modern web frameworks.
           </p>
+          <div class="hero-actions">
+            <a href="#projects" class="btn-primary">
+              <i class="fas fa-code"></i> View My Work
+            </a>
+            <a href="#contact" class="btn-ghost">
+              <i class="fas fa-paper-plane"></i> Say Hello
+            </a>
+          </div>
+          <div class="hero-social">
+            <span>Find me on</span>
+            <a href="https://github.com/nitin811" target="_blank" class="social-icon" title="GitHub">
+              <i class="fab fa-github"></i>
+            </a>
+            <a href="https://linkedin.com/in/nitin-tiwari-272508281" target="_blank" class="social-icon"
+              title="LinkedIn">
+              <i class="fab fa-linkedin-in"></i>
+            </a>
+            <a href="https://www.instagram.com/_nitintiwarii" target="_blank" class="social-icon" title="Instagram">
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a href="mailto:nitinks3366@gmail.com" class="social-icon" title="Email">
+              <i class="fas fa-envelope"></i>
+            </a>
+          </div>
         </div>
-        <form id="contact-form" action="https://formsubmit.co/nitinks3366@gmail.com" method="POST"
-          class="bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-6 md:p-10 space-y-6 transition-all duration-300">
-          <!-- disable CAPTCHA -->
-          <input type="hidden" name="_captcha" value="false">
-
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div>
-              <label for="name" class="block font-semibold mb-1 text-gray-700 dark:text-gray-300">Name</label>
-              <input type="text" id="name" name="name"
-                class="w-full px-4 py-2 border rounded-lg bg-white dark:bg-gray-700 border-gray-300 dark:border-gray-600 text-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500"
-                required>
-            </div>
-            <div>
-              <label for="email" class="block font-semibold mb-1 text-gray-700 dark:text-gray-300">Email</label>
-              <input type="email" id="email" name="email"
-                class="w-full px-4 py-2 border rounded-lg bg-white dark:bg-gray-700 border-gray-300 dark:border-gray-600 text-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500"
-                required>
-            </div>
-          </div>
-          <div>
-            <label for="message" class="block font-semibold mb-1 text-gray-700 dark:text-gray-300">Message</label>
-            <textarea id="message" name="message" rows="5"
-              class="w-full px-4 py-2 border rounded-lg bg-white dark:bg-gray-700 border-gray-300 dark:border-gray-600 text-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500"
-              required></textarea>
-          </div>
-          <button type="submit"
-            class="w-full bg-indigo-600 text-white font-bold py-3 px-6 rounded-full hover:bg-indigo-700 transition duration-300 transform hover:scale-105">
-            Send Message
-          </button>
-          <div id="form-status" class="mt-4 text-center text-sm font-semibold"></div>
-        </form>
       </div>
-    </section>
+    </div>
+  </section>
 
-  </main>
+  <div class="section-divider"></div>
 
-  <!--Link index1.html page-->
-  <a href="index1.html" target="_blank"
-    class="fixed bottom-8 right-8 bg-indigo-600 text-white w-16 h-16 rounded-full shadow-lg hover:bg-indigo-700 transition-all duration-300 flex items-center justify-center text-2xl transform hover:scale-110 z-50">
-    <i class="fas fa-user"></i>
-  </a>
+  <!-- ========== ABOUT ========== -->
+  <section id="about">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-text reveal">
+          <div class="section-label">About Me</div>
+          <h2 class="section-title">Building Things That<br>Matter Online</h2>
+          <br>
+          <p>My journey in web development started with a curiosity for how websites work and a passion for building
+            things from scratch. I've grown into a full-stack developer who thrives on solving complex problems and
+            crafting elegant, functional solutions.</p>
+          <p>I have a strong foundation in <strong>Data Structures & Algorithms</strong> and <strong>Object-Oriented
+              Programming</strong>, with hands-on experience using <strong>C++</strong> on competitive platforms. I'm
+            also skilled in <strong>Python</strong> for data analysis and machine learning.</p>
+          <p>I believe in clean code, agile practices, and continuous learning. I enjoy collaborating in teams where
+            ideas flow and people grow together.</p>
+          <div class="about-stats">
+            <div class="stat-box">
+              <div class="stat-num">3+</div>
+              <div class="stat-label">Projects Built</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-num">4</div>
+              <div class="stat-label">Coding Platforms</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-num">5+</div>
+              <div class="stat-label">Technologies</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-num">∞</div>
+              <div class="stat-label">Curiosity</div>
+            </div>
+          </div>
+        </div>
 
+        <div class="about-right reveal reveal-delay-2">
+          <div class="section-label">Beyond Code</div>
+          <h3 class="section-title" style="font-size: 1.6rem; margin-bottom: 24px;">What I Do<br>When I'm Not Coding
+          </h3>
+          <div class="hobby-list">
+            <div class="hobby-item">
+              <div class="hobby-icon chess">
+                <i class="fas fa-chess-knight"></i>
+              </div>
+              <div class="hobby-info">
+                <strong>Playing Chess</strong>
+                <span>Sharpens problem-solving and strategic critical thinking — mirrors how I approach engineering
+                  challenges.</span>
+              </div>
+            </div>
+            <div class="hobby-item">
+              <div class="hobby-icon stocks">
+                <i class="fas fa-chart-line"></i>
+              </div>
+              <div class="hobby-info">
+                <strong>Learning Stock Market</strong>
+                <span>Fascinated by financial dynamics, I actively study market trends, financial analysis, and
+                  investment strategies.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-  <!-- Footer -->
-  <footer class="bg-gray-900 text-white py-10 mt-16 border-t-4 border-indigo-600 rounded-t-3xl shadow-inner">
-    <div class="container mx-auto px-4 text-center space-y-4">
-      <p class="text-gray-400">&copy; 2025 Nitin Tiwari. All rights reserved.</p>
-      <p class="text-sm text-gray-500">
-        Made with <span class="inline-block animate-pulse text-red-500">❤️</span> by <strong>Nitin</strong>
-      </p>
-      <div class="flex justify-center gap-10">
-        <!-- GitHub -->
-        <a href="https://github.com/nitin811" target="_blank" class="hover:text-indigo-400 transition">
-          <i class="fab fa-github text-2xl"></i>
+  <div class="section-divider"></div>
+
+  <!-- ========== SKILLS ========== -->
+  <section id="skills">
+    <div class="container">
+      <div class="reveal" style="margin-bottom: 48px;">
+        <div class="section-label">Expertise</div>
+        <h2 class="section-title">My Tech Stack</h2>
+      </div>
+      <div class="skills-grid">
+        <div class="skill-card blue reveal reveal-delay-1">
+          <div class="skill-card-icon icon-blue"><i class="fas fa-globe"></i></div>
+          <h4>Web Technologies</h4>
+          <div class="skill-tags">
+            <span class="skill-tag">HTML5</span>
+            <span class="skill-tag">CSS3</span>
+            <span class="skill-tag">JavaScript</span>
+          </div>
+        </div>
+        <div class="skill-card purple reveal reveal-delay-2">
+          <div class="skill-card-icon icon-purple"><i class="fas fa-code"></i></div>
+          <h4>Languages</h4>
+          <div class="skill-tags">
+            <span class="skill-tag">C / C++</span>
+            <span class="skill-tag">Python</span>
+          </div>
+        </div>
+        <div class="skill-card green reveal reveal-delay-3">
+          <div class="skill-card-icon icon-green"><i class="fas fa-layer-group"></i></div>
+          <h4>Frameworks & Libraries</h4>
+          <div class="skill-tags">
+            <span class="skill-tag">React</span>
+            <span class="skill-tag">Tailwind CSS</span>
+            <span class="skill-tag">NumPy</span>
+            <span class="skill-tag">Pandas</span>
+            <span class="skill-tag">Matplotlib</span>
+          </div>
+        </div>
+        <div class="skill-card orange reveal reveal-delay-1">
+          <div class="skill-card-icon icon-orange"><i class="fas fa-tools"></i></div>
+          <h4>Tools & Platforms</h4>
+          <div class="skill-tags">
+            <span class="skill-tag">VS Code</span>
+            <span class="skill-tag">Git</span>
+            <span class="skill-tag">GitHub</span>
+            <span class="skill-tag">Figma</span>
+            <span class="skill-tag">Postman</span>
+            <span class="skill-tag">Excel</span>
+          </div>
+        </div>
+        <div class="skill-card teal reveal reveal-delay-2">
+          <div class="skill-card-icon icon-teal"><i class="fas fa-database"></i></div>
+          <h4>Databases</h4>
+          <div class="skill-tags">
+            <span class="skill-tag">SQL</span>
+            <span class="skill-tag">MongoDB</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- ========== CODING PROFILES ========== -->
+  <section id="profiles">
+    <div class="container">
+      <div class="reveal" style="margin-bottom: 0;">
+        <div class="section-label">Competitive Programming</div>
+        <h2 class="section-title">Coding Profiles</h2>
+        <p class="profiles-intro">You can find my solutions and competitive programming journey across these platforms.
+          I regularly solve algorithmic problems to sharpen my DSA skills.</p>
+      </div>
+      <div class="profiles-grid reveal">
+        <a href="https://www.geeksforgeeks.org/user/nitink6oog" target="_blank" class="profile-card">
+          <div class="profile-card-logo"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+              xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1.07 14.34c-1.92 0-3.45-1.1-3.79-2.84h7.57c-.34 1.74-1.87 2.84-3.78 2.84zm3.78-5.07H7.14c.34-1.74 1.87-2.84 3.79-2.84s3.44 1.1 3.78 2.84z"
+                fill="#2F8D46" />
+            </svg></div>
+          <h4>GeeksforGeeks</h4>
+          <p>DSA problems, articles, and competitive programming practice.</p>
+          <span class="arrow">View Profile <i class="fas fa-arrow-right"></i></span>
         </a>
-        <!-- LinkedIn -->
-        <a href="https://www.linkedin.com/in/nitin-tiwari-272508281" target="_blank"
-          class="hover:text-indigo-400 transition">
-          <i class="fab fa-linkedin text-2xl"></i>
+        <a href="https://leetcode.com/u/nitin_1709" target="_blank" class="profile-card">
+          <div class="profile-card-logo"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+              xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M13.483 0a1.374 1.374 0 0 0-.961.411L7.11 5.826a1.373 1.373 0 0 0-.01 1.929 1.385 1.385 0 0 0 1.96.01l4.43-4.43c.371-.363.984-.363 1.354 0l4.352 4.353a1.386 1.386 0 0 0 1.96-.01 1.373 1.373 0 0 0-.01-1.928L14.444.411A1.37 1.37 0 0 0 13.483 0zm-7.66 7.11a1.373 1.373 0 0 0-.96.411L.41 11.974a1.386 1.386 0 0 0 0 1.96l4.453 4.453a1.386 1.386 0 0 0 1.96 0 1.373 1.373 0 0 0 0-1.96l-3.473-3.473 3.473-3.473a1.373 1.373 0 0 0-.961-.962zm10.395 2.184a1.373 1.373 0 0 0-.97.411l-5.18 5.178a1.377 1.377 0 0 0 0 1.951l5.18 5.18a1.383 1.383 0 0 0 1.95 0 1.372 1.372 0 0 0 0-1.951l-4.205-4.204 4.205-4.205a1.373 1.373 0 0 0-.97-.96z"
+                fill="#FFA116" />
+            </svg></div>
+          <h4>LeetCode</h4>
+          <p>Algorithm challenges and interview-prep problem solving.</p>
+          <span class="arrow">View Profile <i class="fas fa-arrow-right"></i></span>
         </a>
-        <!-- Mail -->
-        <a href="mailto:nitinks3366@gmail.com" class="hover:text-indigo-400 transition">
-          <i class="fas fa-envelope text-2xl"></i>
+        <a href="https://www.hackerrank.com/profile/nitinks3366" target="_blank" class="profile-card">
+          <div class="profile-card-logo"><i class="fab fa-hackerrank"></i></div>
+          <h4>HackerRank</h4>
+          <p>Skill certifications and structured coding challenges.</p>
+          <span class="arrow">View Profile <i class="fas fa-arrow-right"></i></span>
         </a>
-        <!-- Instagram -->
-        <a href="https://www.instagram.com/_nitintiwarii" target="_blank" class="hover:text-indigo-400 transition">
-          <i class="fab fa-instagram text-2xl"></i>
+        <a href="https://www.codechef.com/users/nitin1709" target="_blank" class="profile-card">
+          <div class="profile-card-logo"><svg width="26" height="26" viewBox="0 0 24 24" fill="none"
+              xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M19 12C19.7 12 20.35 11.8 20.9 11.45C21.6 11 22 10.15 22 9.25C22 7.75 20.65 6.65 19.2 6.9C18.6 5.2 16.95 4 15 4C14.7 4 14.4 4.05 14.15 4.1C13.25 2.8 11.75 2 10 2C7.5 2 5.4 3.75 5.05 6.1C3.3 6.45 2 8 2 9.85C2 11.85 3.55 13.5 5.5 13.65V18.5C5.5 19.35 6.15 20 7 20H17C17.85 20 18.5 19.35 18.5 18.5V13.65C18.7 13.65 18.85 13.65 19 12ZM7 18.5V13.5H17V18.5H7Z"
+                fill="#5B4636" />
+              <path d="M9 15H15V16.5H9V15Z" fill="#5B4636" />
+            </svg></div>
+          <h4>CodeChef</h4>
+          <p>Competitive programming contests and rating improvements.</p>
+          <span class="arrow">View Profile <i class="fas fa-arrow-right"></i></span>
         </a>
       </div>
     </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- ========== PROJECTS ========== -->
+  <section id="projects">
+    <div class="container">
+      <div class="reveal" style="margin-bottom: 48px;">
+        <div class="section-label">Work</div>
+        <h2 class="section-title">Selected Projects</h2>
+      </div>
+      <div class="projects-grid">
+        <div class="project-card reveal reveal-delay-1">
+          <div class="project-num">Project 01</div>
+          <h3>Personal Portfolio Website</h3>
+          <p>A personal portfolio to showcase projects, skills, and contact info. Features responsive design, GitHub
+            integration, dark/light mode, and smooth scroll animations.</p>
+          <div class="project-footer">
+            <div class="tech-stack">
+              <span class="tech-chip">HTML</span>
+              <span class="tech-chip">CSS</span>
+              <span class="tech-chip">JS</span>
+            </div>
+            <a href="https://github.com/nitin811/Portfolio" target="_blank" class="project-link">
+              GitHub <i class="fas fa-external-link-alt" style="font-size:0.75rem;"></i>
+            </a>
+          </div>
+        </div>
+
+        <div class="project-card reveal reveal-delay-2">
+          <div class="project-num">Project 02</div>
+          <h3>Advanced Customizable QR Code Generator</h3>
+          <p>A responsive web app that generates QR codes dynamically. Supports custom size, colors, real-time preview,
+            and secure downloading using Fetch + Blob with QRServer API integration.</p>
+          <div class="project-footer">
+            <div class="tech-stack">
+              <span class="tech-chip">HTML</span>
+              <span class="tech-chip">CSS</span>
+              <span class="tech-chip">JS</span>
+              <span class="tech-chip">API</span>
+            </div>
+            <a href="https://github.com/nitin811/Advanced-Customizable-QR-Code-Generator" target="_blank"
+              class="project-link">
+              GitHub <i class="fas fa-external-link-alt" style="font-size:0.75rem;"></i>
+            </a>
+          </div>
+        </div>
+
+        <div class="project-card reveal reveal-delay-3">
+          <div class="project-num">Project 03</div>
+          <h3>Weather Forecast App</h3>
+          <p>Real-time weather updates by city or geolocation. Responsive design with a 3D tilt effect, WeatherAPI
+            integration, and support for light/dark mode switching.</p>
+          <div class="project-footer">
+            <div class="tech-stack">
+              <span class="tech-chip">HTML</span>
+              <span class="tech-chip">CSS</span>
+              <span class="tech-chip">JS</span>
+              <span class="tech-chip">WeatherAPI</span>
+            </div>
+            <a href="https://github.com/nitin811/Weather-Forecast" target="_blank" class="project-link">
+              GitHub <i class="fas fa-external-link-alt" style="font-size:0.75rem;"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- ========== CONTACT ========== -->
+  <section id="contact">
+    <div class="container">
+      <div class="contact-layout">
+        <div class="contact-left reveal">
+          <div class="section-label">Let's Connect</div>
+          <h2 class="section-title">Get in<br>Touch</h2>
+          <p>I'm currently open to new opportunities and collaborations. Whether you have a project in mind, a question,
+            or just want to say hello — my inbox is always open.</p>
+          <div class="contact-info-list">
+            <div class="contact-info-item">
+              <div class="ci-icon"><i class="fas fa-phone"></i></div>
+              <a href="tel:8115622782">+91 8115622782</a>
+            </div>
+            <div class="contact-info-item">
+              <div class="ci-icon"><i class="fas fa-envelope"></i></div>
+              <a href="mailto:nitinks3366@gmail.com">nitinks3366@gmail.com</a>
+            </div>
+            <div class="contact-info-item">
+              <div class="ci-icon"><i class="fab fa-github"></i></div>
+              <a href="https://github.com/nitin811" target="_blank">GitHub</a>
+            </div>
+            <div class="contact-info-item">
+              <div class="ci-icon"><i class="fab fa-linkedin-in"></i></div>
+              <a href="https://linkedin.com/in/nitin-tiwari-272508281" target="_blank">LinkedIn</a>
+            </div>
+            <div class="contact-info-item">
+              <div class="ci-icon"><i class="fab fa-instagram"></i></div>
+              <a href="https://www.instagram.com/_nitintiwarii" target="_blank">Instagram</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-form reveal reveal-delay-2">
+          <form id="contactForm" action="https://formsubmit.co/nitinks3366@gmail.com" method="POST">
+            <input type="hidden" name="_captcha" value="false">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" class="form-control" placeholder="Your name" required>
+              </div>
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" class="form-control" placeholder="your@email.com" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="subject">Subject</label>
+              <input type="text" id="subject" name="subject" class="form-control" placeholder="What's this about?">
+            </div>
+            <div class="form-group">
+              <label for="message">Message</label>
+              <textarea id="message" name="message" class="form-control" rows="5"
+                placeholder="Tell me about your project or idea..." required></textarea>
+            </div>
+            <button type="submit" class="form-submit">
+              <i class="fas fa-paper-plane"></i> Send Message
+            </button>
+            <div id="form-msg"></div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-name">Nitin<span> Tiwari</span></div>
+    <p>Software Engineer & Full Stack Developer · Made with ❤️ in India</p>
+    <div class="footer-socials">
+      <a href="https://github.com/nitin811" target="_blank" class="social-icon"><i class="fab fa-github"></i></a>
+      <a href="https://linkedin.com/in/nitin-tiwari-272508281" target="_blank" class="social-icon"><i
+          class="fab fa-linkedin-in"></i></a>
+      <a href="https://www.instagram.com/_nitintiwarii" target="_blank" class="social-icon"><i
+          class="fab fa-instagram"></i></a>
+      <a href="mailto:nitinks3366@gmail.com" class="social-icon"><i class="fas fa-envelope"></i></a>
+    </div>
+    <p style="margin-top: 24px; font-size: 0.75rem;">© 2025 Nitin Tiwari. All rights reserved.</p>
   </footer>
 
-
   <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      // Smooth scroll for navigation links
-      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-          e.preventDefault();
-          document.querySelector(this.getAttribute('href')).scrollIntoView({
-            behavior: 'smooth'
-          });
-        });
-      });
-
-      // Handle form submission
-      /*const contactForm = document.getElementById('contact-form');
-      const formStatus = document.getElementById('form-status');
-
-      contactForm.addEventListener('submit', function (e) {
-        e.preventDefault();
-        formStatus.className = 'mt-4 text-sm font-semibold text-green-600';
-        formStatus.textContent = 'Message sent successfully!';
-        contactForm.reset(); // Reset form fields
-      });
-      */
-
-
-      // Mobile menu toggle logic
-      const menuToggle = document.getElementById('menu-toggle');
-      const navMenu = document.getElementById('nav-menu');
-      const navLinks = navMenu.querySelectorAll('a');
-      const menuIcon = document.getElementById('menu-icon');
-
-      menuToggle.addEventListener('click', () => {
-        navMenu.classList.toggle('hidden');
-
-        // Toggle icon
-        if (menuIcon.classList.contains('fa-bars')) {
-          menuIcon.classList.remove('fa-bars');
-          menuIcon.classList.add('fa-xmark');
-        } else {
-          menuIcon.classList.remove('fa-xmark');
-          menuIcon.classList.add('fa-bars');
-        }
-      });
-
-      // Close menu on link click
-      navLinks.forEach(link => {
-        link.addEventListener('click', () => {
-          if (!navMenu.classList.contains('hidden')) {
-            navMenu.classList.add('hidden');
-            navMenu.classList.remove('flex');
-
-            // Reset icon to hamburger
-            menuIcon.classList.remove('fa-xmark');
-            menuIcon.classList.add('fa-bars');
-          }
-        });
-      });
-
+    // Loader
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        document.getElementById('loader').classList.add('hidden');
+      }, 2200);
     });
 
+    // Nav scroll effect
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 40);
+    });
+
+    // Mobile menu
+    function toggleMobile() {
+      const menu = document.getElementById('mobileMenu');
+      const ham = document.getElementById('hamburger');
+      menu.classList.toggle('open');
+      ham.classList.toggle('open');
+    }
+    function closeMobile() {
+      document.getElementById('mobileMenu').classList.remove('open');
+      document.getElementById('hamburger').classList.remove('open');
+    }
+
+    // Scroll reveal
+    const revealEls = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.12 });
+    revealEls.forEach(el => observer.observe(el));
+
+    // Form
+    const contactForm = document.getElementById('contactForm');
+    const formMsg = document.getElementById('form-msg');
+    contactForm.addEventListener('submit', function (e) {
+      const btn = contactForm.querySelector('.form-submit');
+      btn.textContent = 'Sending...';
+      btn.disabled = true;
+    });
   </script>
 </body>
 
